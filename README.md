@@ -1,11 +1,11 @@
-<p align="center">
-  <img src="public/iips-logo.png" alt="IIPS Logo" width="120" height="120" />
-</p>
-
 <h1 align="center">🎓 IIPS Smart Placement Portal</h1>
 
 <p align="center">
   <strong>A Modern, AI-Powered Campus Placement Management System</strong>
+</p>
+
+<p align="center">
+  <img width="1898" height="1073" alt="image" src="https://github.com/user-attachments/assets/29ca5f0b-208c-45b3-893d-05ee254e49c8" />
 </p>
 
 <p align="center">
@@ -36,11 +36,8 @@
 - [Screenshots & Screen Descriptions](#-screenshots--screen-descriptions)
 - [User Roles & Permissions](#-user-roles--permissions)
 - [Workflow & Sequence Diagrams](#-workflow--sequence-diagrams)
-- [Database Schema](#-database-schema)
-- [Installation & Setup](#-installation--setup)
 - [Environment Variables](#-environment-variables)
 - [Scripts & Commands](#-scripts--commands)
-- [Deployment](#-deployment)
 - [Contributing](#-contributing)
 - [License](#-license)
 
@@ -191,7 +188,7 @@ IIPS_Placement_Portal/
 │   │   └── schema.ts           # Database schema types
 │   └── middleware.ts           # Route protection middleware
 ├── .env.example                # Environment variables template
-├── SETUP_GUIDE.md              # Detailed setup instructions
+├── README.md              # Detailed documentation
 ├── package.json                # Project dependencies
 ├── tailwind.config.ts          # Tailwind configuration
 ├── tsconfig.json               # TypeScript configuration
@@ -202,11 +199,9 @@ IIPS_Placement_Portal/
 
 ## 📸 Screenshots & Screen Descriptions
 
-> **Note:** Add your screenshots in the `screenshots/` folder and update the paths below.
-
 ### 1. Landing Page (`/`)
 
-<img src="/webp/landing.webp" alt="Landing Page" width="100%"/>
+<img src="public/webp/landing.webp" alt="Landing Page" width="100%"/>
 
 **Description:**  
 The animated landing page serves as the entry point to the portal. It showcases:
@@ -224,7 +219,7 @@ The animated landing page serves as the entry point to the portal. It showcases:
 
 ### 2. Login Page (`/login`)
 
-<img src="/webp/login.webp" alt="Login Page" width="100%"/>
+<img src="public/webp/login.webp" alt="Login Page" width="100%"/>
 
 **Description:**  
 A clean, tabbed login interface supporting multiple authentication methods:
@@ -243,7 +238,7 @@ A clean, tabbed login interface supporting multiple authentication methods:
 
 ### 3. Signup Page (`/signup`)
 
-<img src="/webp/signup.webp" alt="Signup Page" width="100%"/>
+<img src="public/webp/signup.webp" alt="Signup Page" width="100%"/>
 
 **Description:**  
 New user registration page with:
@@ -262,7 +257,7 @@ New user registration page with:
 
 ### 4. Onboarding Page (`/onboarding`)
 
-<img src="/webp/onboarding.webp" alt="Onboarding Page" width="100%"/>
+<img src="public/webp/onboarding.webp" alt="Onboarding Page" width="100%"/>
 
 **Description:**  
 A comprehensive profile completion wizard that collects essential student information:
@@ -298,7 +293,7 @@ A comprehensive profile completion wizard that collects essential student inform
 
 ### 5. Student Dashboard (`/dashboard`)
 
-<img src="/webp/student_dashboard.webp" alt="Student Dashboard" width="100%"/>
+<img src="public/webp/student_dashboard.webp" alt="Student Dashboard" width="100%"/>
 
 **Description:**  
 The main hub for students showing personalized placement information:
@@ -327,7 +322,7 @@ The main hub for students showing personalized placement information:
 
 ### 6. Browse Drives (`/drives`)
 
-<img src="/webp/drives.webp" alt="Browse Drives" width="100%"/>
+<img src="public/webp/drives.webp" alt="Browse Drives" width="100%"/>
 
 **Description:**  
 A searchable, filterable list of all placement drives:
@@ -358,7 +353,7 @@ A searchable, filterable list of all placement drives:
 
 ### 7. Drive Details (`/drives/[id]`)
 
-<img src="/webp/drivesid.webp" alt="Drive Details" width="100%"/>
+<img src="public/webp/drivesid.webp" alt="Drive Details" width="100%"/>
 
 **Description:**  
 Comprehensive information about a specific placement drive:
@@ -388,7 +383,7 @@ Comprehensive information about a specific placement drive:
 
 ### 8. My Applications (`/applications`)
 
-<img src="/webp/my_application.webp" alt="My Applications" width="100%"/>
+<img src="public/webp/my_application.webp" alt="My Applications" width="100%"/>
 
 **Description:**  
 Track all your placement applications in one place:
@@ -425,7 +420,7 @@ Track all your placement applications in one place:
 
 ### 9. Profile Page (`/profile`)
 
-<img src="/webp/profile.webp" alt="Profile Page" width="100%"/>
+<img src="public/webp/profile.webp" alt="Profile Page" width="100%"/>
 
 **Description:**  
 View and edit your complete profile:
@@ -469,7 +464,7 @@ View and edit your complete profile:
 
 ### 10. Admin Dashboard (`/admin`)
 
-<img src="/webp/admin_dashboard.webp" alt="Admin Dashboard" width="100%"/>
+<img src="public/webp/admin_dashboard.webp" alt="Admin Dashboard" width="100%"/>
 
 **Description:**  
 Central hub for TPO and Admin users:
@@ -509,7 +504,7 @@ Central hub for TPO and Admin users:
 
 ### 11. Manage Drives (`/admin/drives`)
 
-<img src="/webp/manage_drives.webp" alt="Manage Drives" width="100%"/>
+<img src="public/webp/manage_drives.webp" alt="Manage Drives" width="100%"/>
 
 **Description:**  
 Complete drive management interface:
@@ -545,7 +540,7 @@ Complete drive management interface:
 
 ### 12. Create Drive (`/admin/drives/new`)
 
-<img src="/webp/create_drives.webp" alt="Create Drive" width="100%"/>
+<img src="public/webp/create_drives.webp" alt="Create Drive" width="100%"/>
 
 **Description:**  
 Comprehensive drive creation wizard:
@@ -589,7 +584,7 @@ Comprehensive drive creation wizard:
 
 ### 13. Student Management (`/admin/students`)
 
-<img src="/webp/manage_students.webp" alt="Student Management" width="100%"/>
+<img src="public/webp/manage_students.webp" alt="Student Management" width="100%"/>
 
 **Description:**  
 Complete student directory with advanced filtering:
@@ -630,7 +625,7 @@ Complete student directory with advanced filtering:
 
 ### 14. Application Processing (`/admin/applications`)
 
-<img src="/webp/manange_applications.webp" alt="Application Processing" width="100%"/>
+<img src="public/webp/manange_applications.webp" alt="Application Processing" width="100%"/>
 
 **Description:**  
 Process and manage all placement applications:
@@ -671,7 +666,7 @@ Applied → Shortlisted → Round 1 → Round 2 → Round 3 → Selected
 
 ### 15. Company Management (`/admin/companies`)
 
-<img src="/webp/manage_companies.webp" alt="Company Management" width="100%"/>
+<img src="public/webp/manage_companies.webp" alt="Company Management" width="100%"/>
 
 **Description:**  
 Maintain company database:
@@ -698,7 +693,7 @@ Maintain company database:
 
 ### 16. User Management (`/admin/users`)
 
-<img src="/webp/manage_user.webp" alt="User Management" width="100%"/>
+<img src="public/webp/manage_user.webp" alt="User Management" width="100%"/>
 
 **Description:**  
 Manage TPO and Admin accounts (Admin only):
@@ -730,7 +725,7 @@ Manage TPO and Admin accounts (Admin only):
 
 ### 17. Analytics Dashboard (`/admin/analytics`)
 
-<img src="/webp/analytics.webp" alt="Analytics Dashboard" width="100%"/>
+<img src="public/webp/analytics.webp" alt="Analytics Dashboard" width="100%"/>
 
 **Description:**  
 Comprehensive placement analytics and insights:
@@ -814,308 +809,32 @@ Comprehensive placement analytics and insights:
 
 ## 🔄 Workflow & Sequence Diagrams
 
-> **Note:** Add your diagrams in the `diagrams/` folder and update the paths below.
-
 ### 1. Student Registration & Onboarding Flow
-
-![Registration Flow](diagrams/registration-flow.png)
-
-```
-┌──────────┐     ┌───────────┐     ┌──────────────┐     ┌───────────┐
-│  Student │     │   Login   │     │  Firebase    │     │ Firestore │
-│          │     │   Page    │     │    Auth      │     │           │
-└────┬─────┘     └─────┬─────┘     └──────┬───────┘     └─────┬─────┘
-     │                 │                   │                   │
-     │  Click Google   │                   │                   │
-     │  Sign In        │                   │                   │
-     │────────────────>│                   │                   │
-     │                 │                   │                   │
-     │                 │  OAuth Request    │                   │
-     │                 │──────────────────>│                   │
-     │                 │                   │                   │
-     │                 │  ID Token         │                   │
-     │                 │<──────────────────│                   │
-     │                 │                   │                   │
-     │                 │  Create Session   │                   │
-     │                 │──────────────────>│                   │
-     │                 │                   │                   │
-     │                 │  Check User Doc   │                   │
-     │                 │───────────────────────────────────────>
-     │                 │                   │                   │
-     │                 │  User Not Found   │                   │
-     │                 │<───────────────────────────────────────
-     │                 │                   │                   │
-     │  Redirect to    │                   │                   │
-     │  Onboarding     │                   │                   │
-     │<────────────────│                   │                   │
-     │                 │                   │                   │
-     │  Submit Profile │                   │                   │
-     │────────────────>│                   │                   │
-     │                 │                   │                   │
-     │                 │  Set Custom       │                   │
-     │                 │  Claims           │                   │
-     │                 │──────────────────>│                   │
-     │                 │                   │                   │
-     │                 │  Save User Doc    │                   │
-     │                 │───────────────────────────────────────>
-     │                 │                   │                   │
-     │  Redirect to    │                   │                   │
-     │  Dashboard      │                   │                   │
-     │<────────────────│                   │                   │
-     │                 │                   │                   │
-```
+[![](https://mermaid.ink/img/pako:eNqNVG1P2zAQ_iuWJSSQQte8lSYfkCAZUyUGiK5fpn5xk2tqkdidXxAb4r_vnLQJo6CRD0l8fu65u-fOfqaFLIGmVMMvC6KAnLNKsWYpCD5HRySTYs0rq5jhUnRWZo0UtlmB6tY99qIwUmnCREnumDK84FsmjN55uU0yN7YEYQjT-99udzvgyWLmtq9lxQXyVHCIuLBm4zBXXMGKaWgNh7D8cg_SGBt5-kzvNs7LT1tHTIIXr-pTUBiiqtVxEI09EkRTfMXxSbfpnhtpgMhH6MvxMFQ6kH6TsqqB3A5ZuWeHPT0_X8xSktW8eNgj57wSZCYG7GKGMOeekjmgnC0VuXc90maAOevpjvAejFXIkpMf8gHe58oUMEx9DoVV7qN1XzRGOdAnSMlCY5XZBoqHt9rEsdMmxFcQfVYbJMyZYW3LXpH2WTpkaydrnJWvT1wbLqouiVwWAzq_3JeNvbW1ScnN4vqaHLdITIFcSSvKk3_o0WGXkhOr5G0pp-fkixQryVSJkT6WIkzJ7RvYIEUYOCmcHmH4WSmQ8E7JNcfuZ7LZ1jDM3-GwzO2q4aZ3yMEwXusPxsWQzOK8NzhijDeaHCtZQ0p0x3jyjuRz9gi9yLbpD-X_hCuZ3rSa9LpRj1aKlzQ1yoJHG1ANc0v67CBLioetgSVN8beENcPOLelSvKAbHtifUjZ7TyVttaHpmtUaV3Zb4tzurqbeqjAgqAw7bWjqj8OWhKbP9AmXUTKKJ9Ek9pMkSqaJP_HobzQnozP_LBn7UTCJp2EYxC8e_dPGHY-mfhBMwnCcJHEcJ5PEo1gsXhzfuxuyvShf_gKsGpOd?type=png)](https://mermaid.live/edit#pako:eNqNVG1P2zAQ_iuWJSSQQte8lSYfkCAZUyUGiK5fpn5xk2tqkdidXxAb4r_vnLQJo6CRD0l8fu65u-fOfqaFLIGmVMMvC6KAnLNKsWYpCD5HRySTYs0rq5jhUnRWZo0UtlmB6tY99qIwUmnCREnumDK84FsmjN55uU0yN7YEYQjT-99udzvgyWLmtq9lxQXyVHCIuLBm4zBXXMGKaWgNh7D8cg_SGBt5-kzvNs7LT1tHTIIXr-pTUBiiqtVxEI09EkRTfMXxSbfpnhtpgMhH6MvxMFQ6kH6TsqqB3A5ZuWeHPT0_X8xSktW8eNgj57wSZCYG7GKGMOeekjmgnC0VuXc90maAOevpjvAejFXIkpMf8gHe58oUMEx9DoVV7qN1XzRGOdAnSMlCY5XZBoqHt9rEsdMmxFcQfVYbJMyZYW3LXpH2WTpkaydrnJWvT1wbLqouiVwWAzq_3JeNvbW1ScnN4vqaHLdITIFcSSvKk3_o0WGXkhOr5G0pp-fkixQryVSJkT6WIkzJ7RvYIEUYOCmcHmH4WSmQ8E7JNcfuZ7LZ1jDM3-GwzO2q4aZ3yMEwXusPxsWQzOK8NzhijDeaHCtZQ0p0x3jyjuRz9gi9yLbpD-X_hCuZ3rSa9LpRj1aKlzQ1yoJHG1ANc0v67CBLioetgSVN8beENcPOLelSvKAbHtifUjZ7TyVttaHpmtUaV3Zb4tzurqbeqjAgqAw7bWjqj8OWhKbP9AmXUTKKJ9Ek9pMkSqaJP_HobzQnozP_LBn7UTCJp2EYxC8e_dPGHY-mfhBMwnCcJHEcJ5PEo1gsXhzfuxuyvShf_gKsGpOd)
 
 ---
 
 ### 2. Drive Application Flow
 
-![Application Flow](diagrams/application-flow.png)
-
-```
-┌──────────┐     ┌───────────┐     ┌──────────────┐     ┌───────────┐
-│  Student │     │   Drive   │     │   Server     │     │ Firestore │
-│          │     │   Page    │     │   Action     │     │           │
-└────┬─────┘     └─────┬─────┘     └──────┬───────┘     └─────┬─────┘
-     │                 │                   │                   │
-     │  Click Apply    │                   │                   │
-     │────────────────>│                   │                   │
-     │                 │                   │                   │
-     │                 │  applyToDrive()   │                   │
-     │                 │──────────────────>│                   │
-     │                 │                   │                   │
-     │                 │                   │  Get Session      │
-     │                 │                   │──────────────────>│
-     │                 │                   │                   │
-     │                 │                   │  Verify Role      │
-     │                 │                   │  = Student        │
-     │                 │                   │<──────────────────│
-     │                 │                   │                   │
-     │                 │                   │  Get Student      │
-     │                 │                   │  Profile          │
-     │                 │                   │──────────────────>│
-     │                 │                   │                   │
-     │                 │                   │  Get Drive        │
-     │                 │                   │  Details          │
-     │                 │                   │──────────────────>│
-     │                 │                   │                   │
-     │                 │                   │  Check            │
-     │                 │                   │  Eligibility      │
-     │                 │                   │                   │
-     │                 │                   │  ✓ CGPA           │
-     │                 │                   │  ✓ Backlogs       │
-     │                 │                   │  ✓ Program        │
-     │                 │                   │  ✓ Tier           │
-     │                 │                   │                   │
-     │                 │                   │  Create           │
-     │                 │                   │  Application      │
-     │                 │                   │──────────────────>│
-     │                 │                   │                   │
-     │                 │                   │  Update Student   │
-     │                 │                   │  appliedDrives[]  │
-     │                 │                   │──────────────────>│
-     │                 │                   │                   │
-     │                 │                   │  Update Drive     │
-     │                 │                   │  applicantCount   │
-     │                 │                   │──────────────────>│
-     │                 │                   │                   │
-     │                 │  Success Response │                   │
-     │                 │<──────────────────│                   │
-     │                 │                   │                   │
-     │  Show Success   │                   │                   │
-     │  Toast          │                   │                   │
-     │<────────────────│                   │                   │
-     │                 │                   │                   │
-```
+[![](https://mermaid.ink/img/pako:eNqFVdtu2zgQ_ZUBgRYOoKSOZSeOgATwJQ0EpGkQ213swi8MNZaISKKXopq2QR77VqDPXWz_Y78nP7C_0KEutuI4jR4IiTrDmTlnZnjHhAqQeSzDv3NMBY4lDzVP5inQw3Oj0jy5Rl1-l-urV3DJtZFCLnlqsgoqjNIwMXmAqSm3lmsQzHzgGYy1_IhkHCK0RrEk5M5T6AT1R9QWXr0NhJEqfQocDy3ordSYkW-k73m6inBicAn7HvipNJKvD7hQBkHZY6tYncpNEwqXEc-wNKhguycnM98DilrcwJwNlsv4Mx12O2clbOYToj6J33JpgFvMVBVJtwK7-uOdzRA7HnzgsQy2h1ic51BmTdSj6AoEubaQt2hERFtZZlGvYZbRGVcqrrDj4W4jRrvvUSa1ZAxoWy4kBk2tiW8rNo9jjGHMDS-dyDQs_z-J4QxNTRlcarWQsdX67HLwZsjFTazCbOc3lmWBXFEtkqoJrqoL02CTONeDaYRwrkIpYBShuCn_axQGdHjd6vR6DnS6fVo6vYbTgl4tw8iAWqzEf_jnx___fYfTc__MH_rn_vRPOL048y9Ot0Rb2xRebZHZ_ODkGEbUL4vFixakua1pyrTmBI6Pof2iHaU81DwV0ZupJGXfcVLiWX66HoxRyKoU_tDSVGXAYwMP_34Ff1Jle97Icc2e27HsWQpdt8He8wU6pdAyXvQqtAZGJaRL4XbD-pHoI42cDrPtJEVZ3WMl8mQ1RLZazZaBtarrrLXMswjWHfaSXVllLZmKsshAqHw1iurncbc0k5vkQlCPreEF-xsOq3lxhSbXKdxBVhp5YHSOcL_G0-CwfspUPJhE6raaLzUhk_w6kcZQYzKYKp6ZWmqMM4SHn9_g4v30t1oWneAWS387P5vhotZK2_FQlLZRCmI765qBPxf8qTWFQYzabKGIXpjDQi0D5lkqHJagTrj9ZHcWMmcmIlXmzHoPcMHz2Nghe09mNPb_UiqpLbXKw4h5C048OCwvxK3ur9WuJoeoR1Zg5vXa_eIQ5t2xT8zb7R7s7beJHbfrHvTah4cO-0y7RNLeUfuoc9A5dOnvUb9377Avhd_9vUP7g_Bup73f77YPHIaBpOvnXXmNFrfp_S8wpT79?type=png)](https://mermaid.live/edit#pako:eNqFVdtu2zgQ_ZUBgRYOoKSOZSeOgATwJQ0EpGkQ213swi8MNZaISKKXopq2QR77VqDPXWz_Y78nP7C_0KEutuI4jR4IiTrDmTlnZnjHhAqQeSzDv3NMBY4lDzVP5inQw3Oj0jy5Rl1-l-urV3DJtZFCLnlqsgoqjNIwMXmAqSm3lmsQzHzgGYy1_IhkHCK0RrEk5M5T6AT1R9QWXr0NhJEqfQocDy3ordSYkW-k73m6inBicAn7HvipNJKvD7hQBkHZY6tYncpNEwqXEc-wNKhguycnM98DilrcwJwNlsv4Mx12O2clbOYToj6J33JpgFvMVBVJtwK7-uOdzRA7HnzgsQy2h1ic51BmTdSj6AoEubaQt2hERFtZZlGvYZbRGVcqrrDj4W4jRrvvUSa1ZAxoWy4kBk2tiW8rNo9jjGHMDS-dyDQs_z-J4QxNTRlcarWQsdX67HLwZsjFTazCbOc3lmWBXFEtkqoJrqoL02CTONeDaYRwrkIpYBShuCn_axQGdHjd6vR6DnS6fVo6vYbTgl4tw8iAWqzEf_jnx___fYfTc__MH_rn_vRPOL048y9Ot0Rb2xRebZHZ_ODkGEbUL4vFixakua1pyrTmBI6Pof2iHaU81DwV0ZupJGXfcVLiWX66HoxRyKoU_tDSVGXAYwMP_34Ff1Jle97Icc2e27HsWQpdt8He8wU6pdAyXvQqtAZGJaRL4XbD-pHoI42cDrPtJEVZ3WMl8mQ1RLZazZaBtarrrLXMswjWHfaSXVllLZmKsshAqHw1iurncbc0k5vkQlCPreEF-xsOq3lxhSbXKdxBVhp5YHSOcL_G0-CwfspUPJhE6raaLzUhk_w6kcZQYzKYKp6ZWmqMM4SHn9_g4v30t1oWneAWS387P5vhotZK2_FQlLZRCmI765qBPxf8qTWFQYzabKGIXpjDQi0D5lkqHJagTrj9ZHcWMmcmIlXmzHoPcMHz2Nghe09mNPb_UiqpLbXKw4h5C048OCwvxK3ur9WuJoeoR1Zg5vXa_eIQ5t2xT8zb7R7s7beJHbfrHvTah4cO-0y7RNLeUfuoc9A5dOnvUb9377Avhd_9vUP7g_Bup73f77YPHIaBpOvnXXmNFrfp_S8wpT79)
 
 ---
 
 ### 3. Dream Offer Policy Flow
 
-![Dream Offer Policy](diagrams/dream-offer-policy.png)
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    DREAM OFFER POLICY                           │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  TIER DEFINITIONS:                                              │
-│  ┌─────────────────────────────────────────────────────────┐   │
-│  │ Regular    : Package < 10 LPA                           │   │
-│  │ Dream      : 10 LPA ≤ Package < 20 LPA                  │   │
-│  │ Super Dream: Package ≥ 20 LPA                           │   │
-│  └─────────────────────────────────────────────────────────┘   │
-│                                                                 │
-│  ELIGIBILITY RULES:                                             │
-│                                                                 │
-│  ┌─────────────┐                                                │
-│  │  Unplaced   │                                                │
-│  │  Student    │                                                │
-│  └──────┬──────┘                                                │
-│         │                                                       │
-│         ▼                                                       │
-│  ┌─────────────────────────────────────┐                       │
-│  │ Can apply to: Regular, Dream,       │                       │
-│  │               Super Dream           │                       │
-│  └──────────────────┬──────────────────┘                       │
-│                     │                                           │
-│         ┌───────────┼───────────┐                              │
-│         ▼           ▼           ▼                              │
-│    ┌─────────┐ ┌─────────┐ ┌─────────────┐                     │
-│    │ Gets    │ │ Gets    │ │ Gets Super  │                     │
-│    │ Regular │ │ Dream   │ │ Dream Offer │                     │
-│    │ Offer   │ │ Offer   │ │             │                     │
-│    └────┬────┘ └────┬────┘ └──────┬──────┘                     │
-│         │           │             │                             │
-│         ▼           ▼             ▼                             │
-│  ┌────────────┐ ┌────────────┐ ┌────────────┐                  │
-│  │ Can still  │ │ Can only   │ │ Placement  │                  │
-│  │ apply to:  │ │ apply to:  │ │ Complete   │                  │
-│  │ Dream,     │ │ Super Dream│ │            │                  │
-│  │ Super Dream│ │            │ │ No more    │                  │
-│  └────────────┘ └────────────┘ │ applications│                  │
-│                                └────────────┘                  │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-```
+[![](https://mermaid.ink/img/pako:eNqFVdFumzAU_RXLVaVtSlogIQSvilQ16ZapTasmfdiWqXKwSdAAI9us6ap8wB73vIc97cf2BfuEGQjgULWBF8y99_jcc--1H6HHCIUICoklHQZ4yXHU_mbNY6Cew0MwlQ8hFcXSC7EQQ-qDNE5C7FEC_CAM0QE1fdunLSE5-0rRgWHajrvYLtv3AZErZCXrtw0QTpdpiPkWw_d91-tWGP7CMyyyF4NwiqMKwfMWXoVA-t2Oae9FEGlCSw5en_Y8t0KwqEM61n4O1A_iQAYsLonY2VvBuDR7SxiCxQpzjh8QsIGtsCqlhxWOABMmaWGI1RfgwXIlAfPB7Vb4wpY9J4vBbDy6AcPR-Xgyno2vJtOT48WgdrgpZEbgBJgGuLg-rU3DTD2U_W4Dq2Gb5rpsPf7--LPjQGOSE9PYX-IgBuchuy_-fH7zBbTbgwbhcpWbtsSufJ8qdu-oFA2KO945E93XNNrWc845-ScRgyqHIiRveTCHVehUpoTGcg4BFjXgYy2Kh-M7nCShKt5pGIJZQPl2NDZN0PcsJKLMEeQ0Clw9bR2b32WhqUDgDMcgTdQgEgok0z0k5ksqUSEGONaL9CKNwl8jUWujUyB7KZCKgrY1uJpcfHxm_-tMw0iJCs5YlIRU9UxOoFEhnYWoafz7_eunmgUQMU5BJnzg4XxAdrxLSqN1IME1Zx4VzaqoBp1xHItAi94pRLPFbovkn3N90mClP3j1IY2S10WYlt-LQRrLUZy1IS6nvylTBqNGSws4zdrx6Sldt2-6M4GFcSef7Tms27UdSd1cha1JKT9AYQsueUAgkjylLRhRHuFsCfO6zqFcqSaYQ6Q-1XGJ01AN2TzeqLAEx58Yi8pIztLlCiIfh0Kt0oTUt1L1l6vjh_IzlsYSItfq5SAQPcI1RKbTP-qbXaNnGh2z53b7LfgAUds0j6y-a7i9jmO7TqfbdTYt-D3f1zhyu5bdt0zXMDo9x-k4LUhJIBm_LG7G_ILc_AdyYkcC?type=png)](https://mermaid.live/edit#pako:eNqFVdFumzAU_RXLVaVtSlogIQSvilQ16ZapTasmfdiWqXKwSdAAI9us6ap8wB73vIc97cf2BfuEGQjgULWBF8y99_jcc--1H6HHCIUICoklHQZ4yXHU_mbNY6Cew0MwlQ8hFcXSC7EQQ-qDNE5C7FEC_CAM0QE1fdunLSE5-0rRgWHajrvYLtv3AZErZCXrtw0QTpdpiPkWw_d91-tWGP7CMyyyF4NwiqMKwfMWXoVA-t2Oae9FEGlCSw5en_Y8t0KwqEM61n4O1A_iQAYsLonY2VvBuDR7SxiCxQpzjh8QsIGtsCqlhxWOABMmaWGI1RfgwXIlAfPB7Vb4wpY9J4vBbDy6AcPR-Xgyno2vJtOT48WgdrgpZEbgBJgGuLg-rU3DTD2U_W4Dq2Gb5rpsPf7--LPjQGOSE9PYX-IgBuchuy_-fH7zBbTbgwbhcpWbtsSufJ8qdu-oFA2KO945E93XNNrWc845-ScRgyqHIiRveTCHVehUpoTGcg4BFjXgYy2Kh-M7nCShKt5pGIJZQPl2NDZN0PcsJKLMEeQ0Clw9bR2b32WhqUDgDMcgTdQgEgok0z0k5ksqUSEGONaL9CKNwl8jUWujUyB7KZCKgrY1uJpcfHxm_-tMw0iJCs5YlIRU9UxOoFEhnYWoafz7_eunmgUQMU5BJnzg4XxAdrxLSqN1IME1Zx4VzaqoBp1xHItAi94pRLPFbovkn3N90mClP3j1IY2S10WYlt-LQRrLUZy1IS6nvylTBqNGSws4zdrx6Sldt2-6M4GFcSef7Tms27UdSd1cha1JKT9AYQsueUAgkjylLRhRHuFsCfO6zqFcqSaYQ6Q-1XGJ01AN2TzeqLAEx58Yi8pIztLlCiIfh0Kt0oTUt1L1l6vjh_IzlsYSItfq5SAQPcI1RKbTP-qbXaNnGh2z53b7LfgAUds0j6y-a7i9jmO7TqfbdTYt-D3f1zhyu5bdt0zXMDo9x-k4LUhJIBm_LG7G_ILc_AdyYkcC)
 
 ---
 
 ### 4. Application Processing Flow (Admin)
 
-![Application Processing](diagrams/application-processing.png)
-
-```
-┌─────────┐    ┌─────────────┐    ┌──────────┐    ┌───────────┐
-│  Admin  │    │ Applications│    │  Server  │    │ Firestore │
-│         │    │    Page     │    │  Action  │    │           │
-└────┬────┘    └──────┬──────┘    └────┬─────┘    └─────┬─────┘
-     │                │                 │                │
-     │  View Apps     │                 │                │
-     │───────────────>│                 │                │
-     │                │                 │                │
-     │                │  getAllApps()   │                │
-     │                │────────────────>│                │
-     │                │                 │                │
-     │                │                 │  Query Apps    │
-     │                │                 │───────────────>│
-     │                │                 │                │
-     │                │  App List       │                │
-     │                │<────────────────│                │
-     │                │                 │                │
-     │  Display Apps  │                 │                │
-     │<───────────────│                 │                │
-     │                │                 │                │
-     │                │                 │                │
-     │  Shortlist     │                 │                │
-     │  Students      │                 │                │
-     │───────────────>│                 │                │
-     │                │                 │                │
-     │                │ updateStatus()  │                │
-     │                │────────────────>│                │
-     │                │                 │                │
-     │                │                 │  Update App    │
-     │                │                 │  status =      │
-     │                │                 │  'shortlisted' │
-     │                │                 │───────────────>│
-     │                │                 │                │
-     │                │                 │  Update Drive  │
-     │                │                 │  shortlisted   │
-     │                │                 │  Count         │
-     │                │                 │───────────────>│
-     │                │                 │                │
-     │  Success       │                 │                │
-     │<───────────────│                 │                │
-     │                │                 │                │
-     ├────────────────┼─────────────────┼────────────────┤
-     │    REPEAT FOR EACH ROUND         │                │
-     ├────────────────┼─────────────────┼────────────────┤
-     │                │                 │                │
-     │  Mark Selected │                 │                │
-     │───────────────>│                 │                │
-     │                │                 │                │
-     │                │ selectStudent() │                │
-     │                │────────────────>│                │
-     │                │                 │                │
-     │                │                 │  Update App    │
-     │                │                 │  status =      │
-     │                │                 │  'selected'    │
-     │                │                 │───────────────>│
-     │                │                 │                │
-     │                │                 │  Update        │
-     │                │                 │  Student       │
-     │                │                 │  placementStat │
-     │                │                 │───────────────>│
-     │                │                 │                │
-     │                │                 │  Update Drive  │
-     │                │                 │  selectedCount │
-     │                │                 │───────────────>│
-     │                │                 │                │
-     │  Success       │                 │                │
-     │<───────────────│                 │                │
-```
+[![](https://mermaid.ink/img/pako:eNp9U21r2zAQ_itC0JGwJDhO7MT6UHBqCoF2lIbsw_AX1b44Yrbkyadua8h_ryy7Sd82fzD38tzd83CnA81UDpTRBn4ZkBkkgheaV6kk9uMGlTTVA-jez1BpEueVkF2g5hpFJmoukWzXhDfkWiuJIPOP-fjOATagH8E2yVCoT7okK9dFaGjsLEh7yMUF-S7gd-c4AuPLy-2auSiJ67oUGW87Nh1ku7Z5O5GRAjAuS4toBsO-_K5NJitGrgGzPUk48i6TrMZ923tAoyW5EQ2-onCjVN05pbXIvTIyb8h0MvnWRd-Tu-X6J0npZq80lrYV5Ck9I88cTZ1zhA1yNCeWb5luHaIVSr6QRItHIC28OWPP3K-U3AldQb8Dt4yThA2UkGHnamsRXTwMfN8bET8I7M_3hv_X4ur_JaRx2Q2aHCR-riRGVYnsRdCgVfSV9BXWctqG72U5Iqwnb7dsD0TyUjy90khHtNAipwy1gRGtQFe8demhhaQU91BBSpk1c9hxU2Ir4WjL7N39UKp6qdTKFHvKdrxsrNetpn8Vp6i2A0Ff2f0jZVN_OXVdKDvQP5T5XjRZBov5LPDm82jmLRcj-peyceRNwnARTqMwDBbeYn4c0Sc315tEQeDNIj8MIm-6DNoCyIW9_9vucbo3enwGcwQZMA?type=png)](https://mermaid.live/edit#pako:eNp9U21r2zAQ_itC0JGwJDhO7MT6UHBqCoF2lIbsw_AX1b44Yrbkyadua8h_ryy7Sd82fzD38tzd83CnA81UDpTRBn4ZkBkkgheaV6kk9uMGlTTVA-jez1BpEueVkF2g5hpFJmoukWzXhDfkWiuJIPOP-fjOATagH8E2yVCoT7okK9dFaGjsLEh7yMUF-S7gd-c4AuPLy-2auSiJ67oUGW87Nh1ku7Z5O5GRAjAuS4toBsO-_K5NJitGrgGzPUk48i6TrMZ923tAoyW5EQ2-onCjVN05pbXIvTIyb8h0MvnWRd-Tu-X6J0npZq80lrYV5Ck9I88cTZ1zhA1yNCeWb5luHaIVSr6QRItHIC28OWPP3K-U3AldQb8Dt4yThA2UkGHnamsRXTwMfN8bET8I7M_3hv_X4ur_JaRx2Q2aHCR-riRGVYnsRdCgVfSV9BXWctqG72U5Iqwnb7dsD0TyUjy90khHtNAipwy1gRGtQFe8demhhaQU91BBSpk1c9hxU2Ir4WjL7N39UKp6qdTKFHvKdrxsrNetpn8Vp6i2A0Ff2f0jZVN_OXVdKDvQP5T5XjRZBov5LPDm82jmLRcj-peyceRNwnARTqMwDBbeYn4c0Sc315tEQeDNIj8MIm-6DNoCyIW9_9vucbo3enwGcwQZMA)
 
 ---
 
 ### 5. Resume Upload & Skill Extraction Flow
 
-![Resume Processing](diagrams/resume-processing.png)
-
-```
-┌──────────┐     ┌───────────┐     ┌──────────────┐     ┌───────────┐
-│  Student │     │  Profile  │     │   Server     │     │ Firestore │
-│          │     │   Page    │     │   Action     │     │           │
-└────┬─────┘     └─────┬─────┘     └──────┬───────┘     └─────┬─────┘
-     │                 │                   │                   │
-     │  Upload PDF     │                   │                   │
-     │────────────────>│                   │                   │
-     │                 │                   │                   │
-     │                 │  uploadResume()   │                   │
-     │                 │──────────────────>│                   │
-     │                 │                   │                   │
-     │                 │                   │  Validate File    │
-     │                 │                   │  (PDF, <5MB)      │
-     │                 │                   │                   │
-     │                 │                   │  Save to Server   │
-     │                 │                   │  /uploads/resumes │
-     │                 │                   │                   │
-     │                 │                   │  ┌─────────────┐  │
-     │                 │                   │  │ pdf-parse   │  │
-     │                 │                   │  │ Extract Text│  │
-     │                 │                   │  └──────┬──────┘  │
-     │                 │                   │         │         │
-     │                 │                   │  ┌──────▼──────┐  │
-     │                 │                   │  │ Skill       │  │
-     │                 │                   │  │ Extraction  │  │
-     │                 │                   │  │ (Patterns)  │  │
-     │                 │                   │  └──────┬──────┘  │
-     │                 │                   │         │         │
-     │                 │                   │  ┌──────▼──────┐  │
-     │                 │                   │  │ Normalize   │  │
-     │                 │                   │  │ Skills      │  │
-     │                 │                   │  │ js→JavaScript│ │
-     │                 │                   │  └─────────────┘  │
-     │                 │                   │                   │
-     │                 │                   │  Update User Doc  │
-     │                 │                   │  - resumeUrl      │
-     │                 │                   │  - extractedSkills│
-     │                 │                   │──────────────────>│
-     │                 │                   │                   │
-     │                 │  Success +        │                   │
-     │                 │  Extracted Skills │                   │
-     │                 │<──────────────────│                   │
-     │                 │                   │                   │
-     │  Display Skills │                   │                   │
-     │  for Review     │                   │                   │
-     │<────────────────│                   │                   │
-     │                 │                   │                   │
-     │  Add/Remove     │                   │                   │
-     │  Skills         │                   │                   │
-     │────────────────>│                   │                   │
-     │                 │                   │                   │
-     │                 │  updateSkills()   │                   │
-     │                 │──────────────────>│                   │
-     │                 │                   │                   │
-```
+[![](https://mermaid.ink/img/pako:eNqFVN1u2jAUfhXLUicqhQKBBIimSmUUqVPbIVg7aeLGTU6C18RmtkNpEbe7nbS77Wa72yvsefoC2yPMiQOEVqJcoBz7-87Pd47PEvs8AOxhCZ9TYD70KYkESSYM6R9JFWdpcgOisH3FBRqrNACmzNGMCEV9OiNMoSGJABGJhoKHNIbcfo4ag5iDyHDF14mvKGfPgf1eBhpQAVKHBW1PCtTBARpOiQTU8NDVLOYkMOeXXAHimc8iR6uI4T3Fo1fodKEEKYUuKNXj4yzvDXDYH5j77FRfrh2SO0IVSnPQCGSaQOWwlN8ZUyAYiTMxfJCSsgj1Yu7fGoQAXyER3VTsVt1Cdquj_xzn0FxuShE0mirEw00Vjz--__3zdS3c1vWWZ65KeV6TmAZEOxtkLanociz02rnoHe7hjMl8ja-ZCmVN5DXKEu2lZP_9_P1Lqyby2k9ZRBnsiTkLwqruvm5SpegMeg8LtS_NEUSwqJ2cbRnjWxrHch_nkotEK_Kgw3yS6PHLN_SWzMnYF3S2jgUsKDWyTxS5yWbng6CqKGDjtd_L5iSX90rqjlSMSlcitpAs59LvVUtJ5K7QOPWz9u243EzfCFQqGFoiaVAWAlMjBKZItHr2GmzPZHENgobUJ9vZfvFhaOoFYame1xHMKdyVRj7L25A81KdyFpP7QmcU6m1Qxj99QidBUBtBogMXjL0vKZPRwCoh1U_nnMp1S3YEf6c_73IFBxlsx_WuzoXC2MKRoAH2lEjBwgnoEchMvMxIE6ymkMAEe_ozgJCksZrgCVtpmt5DHzlP1kzB02iKvZDEUlsm42Jhbk6FHh8Qb3jKFPYaTt3JvWBviRfabrlHbrPtuM1Wo952nU7LwvfYq9qdzlG947bdhu3YrW7XXVn4IQ_cOLI7br3danbcbrttN-tdC0NA9UK8MIs739-r_54x3vo?type=png)](https://mermaid.live/edit#pako:eNqFVN1u2jAUfhXLUicqhQKBBIimSmUUqVPbIVg7aeLGTU6C18RmtkNpEbe7nbS77Wa72yvsefoC2yPMiQOEVqJcoBz7-87Pd47PEvs8AOxhCZ9TYD70KYkESSYM6R9JFWdpcgOisH3FBRqrNACmzNGMCEV9OiNMoSGJABGJhoKHNIbcfo4ag5iDyHDF14mvKGfPgf1eBhpQAVKHBW1PCtTBARpOiQTU8NDVLOYkMOeXXAHimc8iR6uI4T3Fo1fodKEEKYUuKNXj4yzvDXDYH5j77FRfrh2SO0IVSnPQCGSaQOWwlN8ZUyAYiTMxfJCSsgj1Yu7fGoQAXyER3VTsVt1Cdquj_xzn0FxuShE0mirEw00Vjz--__3zdS3c1vWWZ65KeV6TmAZEOxtkLanociz02rnoHe7hjMl8ja-ZCmVN5DXKEu2lZP_9_P1Lqyby2k9ZRBnsiTkLwqruvm5SpegMeg8LtS_NEUSwqJ2cbRnjWxrHch_nkotEK_Kgw3yS6PHLN_SWzMnYF3S2jgUsKDWyTxS5yWbng6CqKGDjtd_L5iSX90rqjlSMSlcitpAs59LvVUtJ5K7QOPWz9u243EzfCFQqGFoiaVAWAlMjBKZItHr2GmzPZHENgobUJ9vZfvFhaOoFYame1xHMKdyVRj7L25A81KdyFpP7QmcU6m1Qxj99QidBUBtBogMXjL0vKZPRwCoh1U_nnMp1S3YEf6c_73IFBxlsx_WuzoXC2MKRoAH2lEjBwgnoEchMvMxIE6ymkMAEe_ozgJCksZrgCVtpmt5DHzlP1kzB02iKvZDEUlsm42Jhbk6FHh8Qb3jKFPYaTt3JvWBviRfabrlHbrPtuM1Wo952nU7LwvfYq9qdzlG947bdhu3YrW7XXVn4IQ_cOLI7br3danbcbrttN-tdC0NA9UK8MIs739-r_54x3vo)
 
 ---
 
@@ -1280,65 +999,6 @@ interface Application {
 
 ---
 
-## 🚀 Installation & Setup
-
-### Prerequisites
-
-- **Node.js** ≥ 20.0.0
-- **pnpm** (recommended) or npm/yarn
-- **Firebase Project** (Firestore, Auth, Storage enabled)
-- **Google Account** for Firebase access
-
-### Step-by-Step Installation
-
-#### 1. Clone the Repository
-
-```bash
-git clone https://github.com/yourusername/IIPS_Placement_Portal.git
-cd IIPS_Placement_Portal
-```
-
-#### 2. Install Dependencies
-
-```bash
-pnpm install
-```
-
-#### 3. Set Up Firebase
-
-Follow the detailed instructions in [SETUP_GUIDE.md](SETUP_GUIDE.md) to:
-- Create a Firebase project
-- Enable Authentication (Google provider)
-- Create Firestore database
-- Enable Storage
-- Generate service account credentials
-
-#### 4. Configure Environment Variables
-
-```bash
-cp .env.example .env.local
-```
-
-Edit `.env.local` with your Firebase credentials (see [Environment Variables](#-environment-variables)).
-
-#### 5. Run Development Server
-
-```bash
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-#### 6. Create Admin User
-
-After first login, run:
-
-```bash
-pnpm update-role -- --uid=YOUR_USER_ID --role=admin
-```
-
----
-
 ## 🔐 Environment Variables
 
 Create a `.env.local` file with the following variables:
@@ -1360,8 +1020,6 @@ FIREBASE_ADMIN_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE K
 # Session Security
 SESSION_SECRET_KEY=your_32_character_random_string
 ```
-
-> ⚠️ **Never commit `.env.local` to version control!**
 
 ---
 
@@ -1400,42 +1058,6 @@ pnpm update-role -- --uid=xyz789 --role=tpo
 
 ---
 
-## 🌐 Deployment
-
-### Deploy to Vercel (Recommended)
-
-1. Push your code to GitHub
-
-2. Connect to Vercel:
-   - Go to [vercel.com](https://vercel.com)
-   - Import your GitHub repository
-   - Configure environment variables
-   - Deploy
-
-3. Add environment variables in Vercel dashboard
-
-### Build Commands
-
-```bash
-# Install dependencies
-pnpm install
-
-# Build command
-pnpm build
-
-# Output directory
-.next
-```
-
-### Post-Deployment
-
-1. Update Firebase Auth authorized domains
-2. Test all authentication flows
-3. Verify Firestore security rules
-4. Set up database backups
-
----
-
 ## 🤝 Contributing
 
 We welcome contributions! Please follow these steps:
@@ -1463,26 +1085,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👨‍💻 Author
 
-**Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your Name](https://linkedin.com/in/yourprofile)
+**Arpan Patra**
+- GitHub: [@ARPANPATRA111](https://github.com/ARPANPATRA111)
+- LinkedIn: [Arpan Patra](https://www.linkedin.com/in/arpan-patra-1b1041320)
 
 ---
 
-## 🙏 Acknowledgments
-
-- **IIPS, DAVV** - For the opportunity to build this platform
-- **Next.js Team** - For the amazing framework
-- **Firebase Team** - For the robust backend services
-- **Radix UI** - For accessible component primitives
-- **Tailwind CSS** - For the utility-first CSS framework
-
----
 
 <p align="center">
-  Made with ❤️ for IIPS Students
-</p>
-
-<p align="center">
-  <a href="#-iips-smart-placement-portal">Back to Top ↑</a>
+  Made with ❤️ By Arpan Patra
 </p>
