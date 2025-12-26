@@ -176,16 +176,16 @@ export function ApplicationsManagement({ applications: initialApplications }: Ap
 
   const getStatusBadge = (status: string) => {
     const colors: Record<string, string> = {
-      applied: 'bg-blue-100 text-blue-800',
-      shortlisted: 'bg-purple-100 text-purple-800',
-      'round-1': 'bg-indigo-100 text-indigo-800',
-      'round-2': 'bg-cyan-100 text-cyan-800',
-      'round-3': 'bg-teal-100 text-teal-800',
-      selected: 'bg-green-100 text-green-800',
-      rejected: 'bg-red-100 text-red-800',
-      withdrawn: 'bg-gray-100 text-gray-800',
+      applied: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400',
+      shortlisted: 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400',
+      'round-1': 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-400',
+      'round-2': 'bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-400',
+      'round-3': 'bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-400',
+      selected: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400',
+      rejected: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400',
+      withdrawn: 'bg-muted text-muted-foreground',
     };
-    return <Badge className={colors[status] || 'bg-gray-100'}>{status.replace('-', ' ')}</Badge>;
+    return <Badge className={colors[status] || 'bg-muted'}>{status.replace('-', ' ')}</Badge>;
   };
 
   const exportToCSV = () => {
@@ -217,7 +217,7 @@ export function ApplicationsManagement({ applications: initialApplications }: Ap
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-4">
@@ -401,7 +401,11 @@ export function ApplicationsManagement({ applications: initialApplications }: Ap
                       <TableCell>{application.companyName}</TableCell>
                       <TableCell>₹{application.packageLPA} LPA</TableCell>
                       <TableCell>
-                        {new Date(application.appliedAt).toLocaleDateString()}
+                        {new Date(application.appliedAt).toLocaleDateString('en-GB', {
+                          day: '2-digit',
+                          month: '2-digit', 
+                          year: 'numeric'
+                        })}
                       </TableCell>
                       <TableCell>{getStatusBadge(application.status)}</TableCell>
                       <TableCell>{application.currentRound ? `Round ${application.currentRound}` : '-'}</TableCell>

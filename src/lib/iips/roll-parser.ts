@@ -119,7 +119,6 @@ export function parseRollNumber(rollNumber: string): RollParseResult {
 
   const programInfo = PROGRAM_PREFIX_MAP[prefix as ProgramPrefix];
 
-  // Parse year
   const yearCode = parseInt(yearStr!, 10);
   if (isNaN(yearCode) || yearCode < 0 || yearCode > 99) {
     return {
@@ -132,7 +131,6 @@ export function parseRollNumber(rollNumber: string): RollParseResult {
     };
   }
 
-  // Parse sequence number
   const sequenceNumber = parseInt(sequenceStr!, 10);
   if (isNaN(sequenceNumber) || sequenceNumber < 1) {
     return {
@@ -145,42 +143,33 @@ export function parseRollNumber(rollNumber: string): RollParseResult {
     };
   }
 
-  // Calculate admission year (2000 + YY)
   const admissionYear = 2000 + yearCode;
 
-  // Check lateral entry
   const isLateralEntry = leFlag === '-LE';
 
-  // Calculate effective duration (subtract 1 for lateral entry)
   const effectiveDuration = isLateralEntry 
     ? programInfo.duration - 1 
     : programInfo.duration;
 
-  // Calculate passing year
   const passingYear = admissionYear + effectiveDuration;
 
-  // Calculate current academic year (assuming July-June academic year)
   const now = new Date();
   const currentCalendarYear = now.getFullYear();
-  const currentMonth = now.getMonth(); // 0-indexed
+  const currentMonth = now.getMonth();
   
-  // Academic year starts in July (month 6)
   const currentAcademicYear = currentMonth >= 6 
     ? currentCalendarYear 
     : currentCalendarYear - 1;
 
-  // Calculate which year of study the student is in
   const yearsCompleted = currentAcademicYear - admissionYear;
   const currentYear = Math.min(
     Math.max(yearsCompleted + 1, 1),
     effectiveDuration
   );
 
-  // Determine final year and alumni status
   const isFinalYear = currentYear === effectiveDuration;
   const isAlumni = currentAcademicYear >= passingYear;
 
-  // Generate batch identifier
   const batch = `${admissionYear}-${passingYear}`;
 
   return {
@@ -206,10 +195,6 @@ export function parseRollNumber(rollNumber: string): RollParseResult {
     },
   };
 }
-
-// ============================================================================
-// UTILITY FUNCTIONS
-// ============================================================================
 
 export function isValidRollNumber(rollNumber: string): boolean {
   return parseRollNumber(rollNumber).success;
@@ -280,10 +265,8 @@ export function isPlacementEligible(rollNumber: string): boolean {
 
   const { currentYear, effectiveDuration, isAlumni } = result.data;
   
-  // Not eligible if already graduated
   if (isAlumni) return false;
 
-  // Eligible if in final year or pre-final year
   return currentYear >= effectiveDuration - 1;
 }
 

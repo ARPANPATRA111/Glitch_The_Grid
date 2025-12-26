@@ -23,14 +23,14 @@ export const metadata = {
 };
 
 const statusConfig: Record<string, { label: string; color: string; icon: React.ReactNode }> = {
-  applied: { label: 'Applied', color: 'bg-blue-100 text-blue-800', icon: <Clock className="h-3 w-3" /> },
-  shortlisted: { label: 'Shortlisted', color: 'bg-yellow-100 text-yellow-800', icon: <AlertCircle className="h-3 w-3" /> },
-  'round-1': { label: 'Round 1', color: 'bg-purple-100 text-purple-800', icon: <Calendar className="h-3 w-3" /> },
-  'round-2': { label: 'Round 2', color: 'bg-purple-100 text-purple-800', icon: <Calendar className="h-3 w-3" /> },
-  'round-3': { label: 'Round 3', color: 'bg-purple-100 text-purple-800', icon: <Calendar className="h-3 w-3" /> },
-  selected: { label: 'Selected', color: 'bg-green-100 text-green-800', icon: <CheckCircle className="h-3 w-3" /> },
-  rejected: { label: 'Not Selected', color: 'bg-red-100 text-red-800', icon: <XCircle className="h-3 w-3" /> },
-  withdrawn: { label: 'Withdrawn', color: 'bg-gray-100 text-gray-800', icon: <XCircle className="h-3 w-3" /> },
+  applied: { label: 'Applied', color: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400', icon: <Clock className="h-3 w-3" /> },
+  shortlisted: { label: 'Shortlisted', color: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400', icon: <AlertCircle className="h-3 w-3" /> },
+  'round-1': { label: 'Round 1', color: 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400', icon: <Calendar className="h-3 w-3" /> },
+  'round-2': { label: 'Round 2', color: 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400', icon: <Calendar className="h-3 w-3" /> },
+  'round-3': { label: 'Round 3', color: 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400', icon: <Calendar className="h-3 w-3" /> },
+  selected: { label: 'Selected', color: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400', icon: <CheckCircle className="h-3 w-3" /> },
+  rejected: { label: 'Not Selected', color: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400', icon: <XCircle className="h-3 w-3" /> },
+  withdrawn: { label: 'Withdrawn', color: 'bg-muted text-muted-foreground', icon: <XCircle className="h-3 w-3" /> },
 };
 
 export default async function ApplicationsPage() {
@@ -49,7 +49,7 @@ export default async function ApplicationsPage() {
   const applications = await getMyApplications().catch(() => []);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <MainNavbar userName={profile.fullName} programName={profile.programName} />
 
       <main className="container mx-auto px-4 py-8">

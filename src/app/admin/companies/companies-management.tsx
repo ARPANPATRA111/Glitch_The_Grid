@@ -185,7 +185,7 @@ export function CompaniesManagement({ companies: initialCompanies }: CompaniesMa
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-4">
@@ -234,7 +234,7 @@ export function CompaniesManagement({ companies: initialCompanies }: CompaniesMa
                 title='Industry Filter'
                 value={industryFilter} 
                 onChange={(e) => setIndustryFilter(e.target.value)}
-                className="px-3 py-2 border rounded-md bg-white"
+                className="px-3 py-2 border rounded-md bg-background"
               >
                 <option value="all">All Industries</option>
                 {industries.map(i => (

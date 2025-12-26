@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Breadcrumb } from '@/components/ui/breadcrumb';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { logout } from '@/actions/auth';
 import type { Route } from 'next';
 import {
@@ -29,9 +30,7 @@ const studentNavItems: NavItem[] = [
   { label: 'Profile', href: '/profile' },
 ];
 
-const adminNavItems: NavItem[] = [
-  { label: 'Overview', href: '/admin' },
-];
+const adminNavItems: NavItem[] = [];
 
 interface MainNavbarProps {
   userName?: string;
@@ -58,7 +57,7 @@ export function MainNavbar({ userName, userRole, programName }: MainNavbarProps)
   };
 
   return (
-    <header className="bg-white border-b sticky top-0 z-50">
+    <header className="bg-background border-b sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="h-16 flex items-center justify-between">
           <Link href={isAdminRoute ? '/admin' : '/dashboard'} className="flex items-center gap-3 flex-shrink-0">
@@ -83,7 +82,7 @@ export function MainNavbar({ userName, userRole, programName }: MainNavbarProps)
                   "px-3 py-2 text-sm font-medium rounded-md transition-colors",
                   isActiveLink(item.href)
                     ? "bg-primary/10 text-primary"
-                    : "text-muted-foreground hover:text-foreground hover:bg-gray-100"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
                 )}
               >
                 {item.label}
@@ -95,7 +94,7 @@ export function MainNavbar({ userName, userRole, programName }: MainNavbarProps)
                 href="/admin"
                 className={cn(
                   "px-3 py-2 text-sm font-medium rounded-md transition-colors ml-2",
-                  "text-orange-600 hover:text-orange-700 hover:bg-orange-50 flex items-center gap-1"
+                  "text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 hover:bg-orange-50 dark:hover:bg-orange-900/20 flex items-center gap-1"
                 )}
               >
                 <Settings className="h-4 w-4" />
@@ -104,7 +103,8 @@ export function MainNavbar({ userName, userRole, programName }: MainNavbarProps)
             )}
           </nav>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
             {userName && (
               <span className="text-sm text-muted-foreground hidden lg:inline">
                 {userName}
@@ -128,7 +128,7 @@ export function MainNavbar({ userName, userRole, programName }: MainNavbarProps)
           </div>
         </div>
 
-        <div className="h-10 flex items-center border-t -mx-4 px-4 bg-gray-50/50">
+        <div className="h-10 flex items-center border-t -mx-4 px-4 bg-muted/50">
           <Breadcrumb />
         </div>
 
@@ -144,7 +144,7 @@ export function MainNavbar({ userName, userRole, programName }: MainNavbarProps)
                     "px-3 py-2 text-sm font-medium rounded-md transition-colors",
                     isActiveLink(item.href)
                       ? "bg-primary/10 text-primary"
-                      : "text-muted-foreground hover:text-foreground hover:bg-gray-100"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
                   )}
                 >
                   {item.label}
@@ -155,7 +155,7 @@ export function MainNavbar({ userName, userRole, programName }: MainNavbarProps)
                 <Link
                   href="/admin"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-3 py-2 text-sm font-medium rounded-md text-orange-600 hover:bg-orange-50 flex items-center gap-1"
+                  className="px-3 py-2 text-sm font-medium rounded-md text-orange-600 dark:text-orange-400 hover:bg-orange-50 dark:hover:bg-orange-900/20 flex items-center gap-1"
                 >
                   <Settings className="h-4 w-4" />
                   Admin Panel

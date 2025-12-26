@@ -170,25 +170,19 @@ export interface PlacementDrive {
   
   eligibility: DriveEligibility;
   
-  // Selection Process
   rounds: DriveRound[];
   
-  // Timeline
   applicationDeadline: Date;
   driveDate?: Date;
   
-  // Status
   status: DriveStatus;
   
-  // Statistics
   applicantCount: number;
   shortlistedCount: number;
   selectedCount: number;
   
-  // Documents
   documents: DriveDocument[];
   
-  // Metadata
   createdBy: string;
   createdAt: Date;
   updatedAt: Date;
@@ -206,12 +200,10 @@ export interface ApplicationRoundResult {
 }
 
 export interface Application {
-  // Composite Key: `${driveId}_${studentId}`
   id: string;
   driveId: string;
   studentId: string;
   
-  // Denormalized for queries
   studentName: string;
   studentRollNumber: string;
   studentEmail: string;
@@ -222,17 +214,13 @@ export interface Application {
   packageLPA: number;
   tier: PlacementTier;
   
-  // Application Status
   status: ApplicationStatus;
   currentRound?: string;
   
-  // Round Results
   roundResults: ApplicationRoundResult[];
   
-  // Resume snapshot at application time
   resumeUrl: string;
   
-  // Interview Scheduling
   scheduledSlot?: {
     date: Date;
     time: string;
@@ -241,13 +229,11 @@ export interface Application {
     meetingLink?: string;
   };
   
-  // Final Outcome
   offerPackageLPA?: number;
   offerLetterUrl?: string;
   offerAccepted?: boolean;
   offerAcceptedAt?: Date;
   
-  // Metadata
   appliedAt: Date;
   updatedAt: Date;
   withdrawnAt?: Date;
@@ -263,13 +249,11 @@ export interface Company {
   description?: string;
   headquarters?: string;
   
-  // Historical Stats
   totalDrives: number;
   totalHires: number;
   averagePackageLPA: number;
   lastVisitYear?: number;
   
-  // HR Contact
   hrContacts: {
     name: string;
     email: string;
@@ -277,7 +261,6 @@ export interface Company {
     designation?: string;
   }[];
   
-  // Metadata
   createdAt: Date;
   updatedAt: Date;
 }
@@ -305,13 +288,11 @@ export interface PortalSettings {
   academicYear: string;
   placementSeason: string;
   
-  // Feature Flags
   isRegistrationOpen: boolean;
   isDriveApplicationOpen: boolean;
   isResumeUploadEnabled: boolean;
   isAIFeaturesEnabled: boolean;
   
-  // Announcement
   announcement?: {
     title: string;
     message: string;
@@ -319,7 +300,6 @@ export interface PortalSettings {
     expiresAt?: Date;
   };
   
-  // Contact
   tpoEmail: string;
   tpoPhone: string;
   
@@ -331,7 +311,7 @@ export interface ExtractedSkill {
   id: string;
   name: string;
   category: 'language' | 'framework' | 'database' | 'tool' | 'soft-skill' | 'other';
-  confidence: number;  // 0-1 from AI extraction
+  confidence: number;
   source: 'resume' | 'manual';
   extractedAt: Date;
 }
@@ -358,7 +338,7 @@ export interface InterviewPanel {
   name: string;
   interviewers: string[];
   room?: string;
-  capacity: number;  // Max students per slot
+  capacity: number;
 }
 
 export interface InterviewSlot {
@@ -368,18 +348,18 @@ export interface InterviewSlot {
   panelId: string;
   panelName: string;
   date: Date;
-  startTime: string;  // "09:00"
-  endTime: string;    // "09:30"
+  startTime: string;
+  endTime: string;
   status: 'scheduled' | 'completed' | 'no-show' | 'rescheduled';
 }
 
 export interface ScheduleConfig {
   driveId: string;
   date: Date;
-  startTime: string;      // "09:00"
-  endTime: string;        // "17:00"
-  slotDuration: number;   // Minutes
-  breakDuration: number;  // Minutes between slots
+  startTime: string;
+  endTime: string;
+  slotDuration: number;
+  breakDuration: number;
   lunchBreak?: {
     start: string;
     end: string;

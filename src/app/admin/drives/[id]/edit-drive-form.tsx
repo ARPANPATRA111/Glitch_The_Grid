@@ -39,25 +39,25 @@ import { useToast } from '@/components/ui/use-toast';
 import { updateDrive, updateApplicationStatus, updateDriveStatus } from '@/actions/admin';
 import type { PlacementDrive, Application, DriveStatus, ApplicationStatus } from '@/types/schema';
 
+// Program codes must match PROGRAM_PREFIX_MAP in roll-parser.ts
 const PROGRAMS = [
   { code: 'MCA_INT', name: 'MCA (Integrated)' },
-  { code: 'MCA', name: 'MCA' },
-  { code: 'MBA', name: 'MBA' },
-  { code: 'BTECH_CS', name: 'B.Tech (CS)' },
-  { code: 'BTECH_IT', name: 'B.Tech (IT)' },
-  { code: 'BCA', name: 'BCA' },
-  { code: 'BBA', name: 'BBA' },
+  { code: 'MBA_MS', name: 'MBA (Management Science)' },
+  { code: 'MTECH_IT', name: 'M.Tech (IT)' },
+  { code: 'MBA_APR', name: 'MBA (Advertising & PR)' },
+  { code: 'MBA_ENT', name: 'MBA (Entrepreneurship)' },
+  { code: 'BCOM_HONS', name: 'B.Com (Hons)' },
 ];
 
 const statusColors: Record<ApplicationStatus, string> = {
-  applied: 'bg-blue-100 text-blue-800',
-  shortlisted: 'bg-yellow-100 text-yellow-800',
-  'round-1': 'bg-purple-100 text-purple-800',
-  'round-2': 'bg-purple-100 text-purple-800',
-  'round-3': 'bg-purple-100 text-purple-800',
-  selected: 'bg-green-100 text-green-800',
-  rejected: 'bg-red-100 text-red-800',
-  withdrawn: 'bg-gray-100 text-gray-800',
+  applied: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400',
+  shortlisted: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400',
+  'round-1': 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400',
+  'round-2': 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400',
+  'round-3': 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400',
+  selected: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400',
+  rejected: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400',
+  withdrawn: 'bg-muted text-muted-foreground',
 };
 
 interface EditDriveFormProps {
@@ -221,7 +221,7 @@ export function EditDriveForm({ drive, applications: initialApplications }: Edit
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-4">
@@ -238,9 +238,9 @@ export function EditDriveForm({ drive, applications: initialApplications }: Edit
           </div>
           <div className="flex items-center gap-2">
             <Badge className={
-              formData.status === 'open' ? 'bg-green-100 text-green-800' :
-              formData.status === 'closed' ? 'bg-yellow-100 text-yellow-800' :
-              'bg-gray-100 text-gray-800'
+              formData.status === 'open' ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' :
+              formData.status === 'closed' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400' :
+              'bg-muted text-muted-foreground'
             }>
               {formData.status}
             </Badge>

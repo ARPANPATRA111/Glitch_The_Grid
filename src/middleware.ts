@@ -3,6 +3,9 @@ import type { NextRequest } from 'next/server';
 
 const SESSION_COOKIE_NAME = '__session';
 
+// Request logging configuration
+const ENABLE_REQUEST_LOGGING = process.env.NODE_ENV === 'development' || process.env.ENABLE_REQUEST_LOGGING === 'true';
+
 const PROTECTED_ROUTES = [
   '/dashboard',
   '/drives',
@@ -28,7 +31,43 @@ const PUBLIC_ROUTES = [
   '/api/health',
 ];
 
+// Generate unique request ID for tracing
+function generateRequestId(): string {
+  return `req_${Date.now().toString(36)}_${Math.random().toString(36).substring(2, 9)}`;
+}
+
+// Log request details
+function logRequest(
+  requestId: string,
+  method: string,
+  pathname: string,
+  userId: string | null,
+  duration: number,
+  statusCode?: number
+) {
+  if (!ENABLE_REQUEST_LOGGING) return;
+  
+  const logEntry = {
+    requestId,
+    method,
+    path: pathname,
+    userId: userId || 'anonymous',
+    duration: `${duration}ms`,
+    status: statusCode,
+    timestamp: new Date().toISOString(),
+  };
+  
+  // Structured logging for production, readable for development
+  if (process.env.NODE_ENV === 'production') {
+    console.log(JSON.stringify(logEntry));
+  } else {
+    console.log(`[${logEntry.timestamp}] ${method} ${pathname} - ${userId || 'anon'} - ${duration}ms`);
+  }
+}
+
 export async function middleware(request: NextRequest) {
+  const startTime = Date.now();
+  const requestId = generateRequestId();
   const { pathname } = request.nextUrl;
   
   if (
@@ -37,8 +76,18 @@ export async function middleware(request: NextRequest) {
     pathname.includes('.') ||
     pathname.startsWith('/api/public')
   ) {
+    // Skip logging for static assets
     return NextResponse.next();
   }
+
+  // Helper to log and return response
+  const respond = (response: NextResponse, statusCode: number = 200) => {
+    if (ENABLE_REQUEST_LOGGING) {
+      logRequest(request.method, pathname, statusCode, startTime, requestId);
+    }
+    response.headers.set('x-request-id', requestId);
+    return response;
+  };
 
   const sessionCookie = request.cookies.get(SESSION_COOKIE_NAME)?.value;
 
@@ -49,16 +98,16 @@ export async function middleware(request: NextRequest) {
 
   if (!sessionCookie) {
     if (isPublicRoute || isAuthRoute) {
-      return NextResponse.next();
+      return respond(NextResponse.next());
     }
 
     if (isProtectedRoute || isAdminRoute) {
       const loginUrl = new URL('/login', request.url);
       loginUrl.searchParams.set('redirect', pathname);
-      return NextResponse.redirect(loginUrl);
+      return respond(NextResponse.redirect(loginUrl), 302);
     }
 
-    return NextResponse.next();
+    return respond(NextResponse.next());
   }
 
   try {
@@ -67,19 +116,19 @@ export async function middleware(request: NextRequest) {
     if (!claims) {
       const response = NextResponse.redirect(new URL('/login', request.url));
       response.cookies.delete(SESSION_COOKIE_NAME);
-      return response;
+      return respond(response, 302);
     }
 
     if (isAuthRoute) {
       const redirectUrl = claims.role === 'student' 
         ? '/dashboard' 
         : '/admin';
-      return NextResponse.redirect(new URL(redirectUrl, request.url));
+      return respond(NextResponse.redirect(new URL(redirectUrl, request.url)), 302);
     }
 
     if (isAdminRoute) {
       if (claims.role !== 'admin' && claims.role !== 'tpo') {
-        return NextResponse.redirect(new URL('/dashboard', request.url));
+        return respond(NextResponse.redirect(new URL('/dashboard', request.url)), 302);
       }
     }
 
@@ -90,17 +139,17 @@ export async function middleware(request: NextRequest) {
       requestHeaders.set('x-user-email', claims.email);
     }
 
-    return NextResponse.next({
+    return respond(NextResponse.next({
       request: {
         headers: requestHeaders,
       },
-    });
+    }));
   } catch (error) {
     console.error('[MIDDLEWARE] Session verification failed:', error);
     
     const response = NextResponse.redirect(new URL('/login', request.url));
     response.cookies.delete(SESSION_COOKIE_NAME);
-    return response;
+    return respond(response, 302);
   }
 }
 

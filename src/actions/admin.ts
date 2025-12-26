@@ -22,6 +22,70 @@ export interface AdminStats {
   placements: number;
 }
 
+export interface RecentActivity {
+  id: string;
+  type: 'application' | 'drive' | 'placement';
+  title: string;
+  description: string;
+  timestamp: string;
+  icon?: string;
+}
+
+export async function getRecentActivity(limit: number = 10): Promise<{ success: boolean; activities?: RecentActivity[]; error?: string }> {
+  try {
+    await verifyAdminAccess();
+    const db = getAdminFirestore();
+    const activities: RecentActivity[] = [];
+
+    // Get recent applications
+    const recentAppsSnap = await db.collection('applications')
+      .orderBy('appliedAt', 'desc')
+      .limit(limit)
+      .get();
+
+    recentAppsSnap.docs.forEach(doc => {
+      const data = doc.data();
+      activities.push({
+        id: doc.id,
+        type: 'application',
+        title: `New Application`,
+        description: `${data.studentName || 'Student'} applied to ${data.companyName || 'a drive'}`,
+        timestamp: data.appliedAt?.toDate?.()?.toISOString() || new Date().toISOString(),
+        icon: 'file-text',
+      });
+    });
+
+    // Get recent drives
+    const recentDrivesSnap = await db.collection('drives')
+      .orderBy('createdAt', 'desc')
+      .limit(5)
+      .get();
+
+    recentDrivesSnap.docs.forEach(doc => {
+      const data = doc.data();
+      activities.push({
+        id: doc.id,
+        type: 'drive',
+        title: `New Drive`,
+        description: `${data.companyName} - ${data.jobTitle}`,
+        timestamp: data.createdAt?.toDate?.()?.toISOString() || new Date().toISOString(),
+        icon: 'briefcase',
+      });
+    });
+
+    // Sort all activities by timestamp
+    activities.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+
+    return {
+      success: true,
+      activities: activities.slice(0, limit),
+    };
+  } catch (error) {
+    console.error('Get recent activity failed:', error);
+    return { success: false, error: error instanceof Error ? error.message : 'Failed to get activity' };
+  }
+}
+
 export async function getAdminStats(): Promise<{ success: boolean; stats?: AdminStats; error?: string }> {
   try {
     await verifyAdminAccess();

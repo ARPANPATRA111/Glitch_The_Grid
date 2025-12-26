@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 import { getSession } from '@/actions/auth';
-import { getAdminStats } from '@/actions/admin';
+import { getAdminStats, getRecentActivity } from '@/actions/admin';
 import { AdminDashboard } from './admin-dashboard';
 
 export const metadata = {
@@ -20,8 +20,12 @@ export default async function AdminPage() {
     redirect('/dashboard');
   }
 
-  // Fetch dashboard stats
-  const statsResult = await getAdminStats();
+  // Fetch dashboard stats and recent activity
+  const [statsResult, activityResult] = await Promise.all([
+    getAdminStats(),
+    getRecentActivity(10),
+  ]);
+
   const stats = statsResult.stats ?? {
     activeDrives: 0,
     totalStudents: 0,
@@ -29,5 +33,7 @@ export default async function AdminPage() {
     placements: 0,
   };
 
-  return <AdminDashboard userRole={session.role} stats={stats} />;
+  const recentActivity = activityResult.activities ?? [];
+
+  return <AdminDashboard userRole={session.role} stats={stats} recentActivity={recentActivity} />;
 }

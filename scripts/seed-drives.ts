@@ -421,9 +421,10 @@ function generateDrive(company: CompanyData, daysOffset: number): Omit<Placement
   const eligibility: DriveEligibility = {
     minCGPA: company.tier === 'superDream' ? 7.5 : company.tier === 'dream' ? 7.0 : 6.0,
     maxBacklogs: company.tier === 'superDream' ? 0 : company.tier === 'dream' ? 0 : 1,
+    // Use correct IIPS program codes from roll-parser.ts
     allowedPrograms: company.tier === 'superDream' 
-      ? ['MCA_INT', 'BTECH_CS', 'MTech_CS']
-      : ['MCA_INT', 'MBA_MS', 'MBA_IT', 'BTECH_CS', 'MTech_CS', 'BCA', 'MCA'],
+      ? ['MCA_INT', 'MTECH_IT']
+      : ['MCA_INT', 'MBA_MS', 'MTECH_IT', 'MBA_APR', 'MBA_ENT', 'BCOM_HONS'],
     allowedBatches: ['2023-2029', '2024-2030', '2022-2028'],
     minTenthPercent: company.tier === 'superDream' ? 70 : 60,
     minTwelfthPercent: company.tier === 'superDream' ? 70 : 60,

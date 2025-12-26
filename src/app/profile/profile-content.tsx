@@ -12,6 +12,7 @@ import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/components/ui/use-toast';
 import { MainNavbar } from '@/components/layout/main-navbar';
+import { CategorizedSkills } from '@/components/skills';
 import {
   User,
   Mail,
@@ -191,7 +192,7 @@ export function ProfileContent({ profile, applications }: ProfileContentProps) {
   const recentApplications = applications.slice(0, 5);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <MainNavbar userName={profile.fullName} programName={profile.programName} />
 
       <main className="container mx-auto px-4 py-8">
@@ -361,7 +362,7 @@ export function ProfileContent({ profile, applications }: ProfileContentProps) {
                 ) : (
                   <div className="space-y-3">
                     {recentApplications.map((app) => (
-                      <div key={app.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                      <div key={app.id} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
                         <div>
                           <p className="font-medium">{app.companyName}</p>
                           <p className="text-sm text-muted-foreground capitalize">{app.tier} tier - ₹{app.packageLPA} LPA</p>
@@ -538,27 +539,38 @@ export function ProfileContent({ profile, applications }: ProfileContentProps) {
                 </div>
 
                 {skills.length > 0 ? (
-                  <div className="flex flex-wrap gap-2">
-                    {skills.map((skill, idx) => (
-                      <Badge 
-                        key={idx} 
-                        variant="secondary" 
-                        className="text-sm pr-1 flex items-center gap-1 group"
-                      >
-                        {skill}
-                        <button
-                          onClick={() => handleRemoveSkill(skill)}
-                          disabled={removingSkill === skill}
-                          className="ml-1 p-0.5 rounded-full hover:bg-red-100 hover:text-red-600 transition-colors"
-                        >
-                          {removingSkill === skill ? (
-                            <Loader2 className="h-3 w-3 animate-spin" />
-                          ) : (
-                            <X className="h-3 w-3" />
-                          )}
-                        </button>
-                      </Badge>
-                    ))}
+                  <div className="space-y-4">
+                    <CategorizedSkills 
+                      skills={skills} 
+                      showUncategorized={true}
+                      compact={true}
+                    />
+                    
+                    <div className="border-t pt-4">
+                      <p className="text-sm text-muted-foreground mb-2">Click to remove a skill:</p>
+                      <div className="flex flex-wrap gap-2">
+                        {skills.map((skill, idx) => (
+                          <Badge 
+                            key={idx} 
+                            variant="secondary" 
+                            className="text-sm pr-1 flex items-center gap-1 group"
+                          >
+                            {skill}
+                            <button
+                              onClick={() => handleRemoveSkill(skill)}
+                              disabled={removingSkill === skill}
+                              className="ml-1 p-0.5 rounded-full hover:bg-red-100 hover:text-red-600 transition-colors"
+                            >
+                              {removingSkill === skill ? (
+                                <Loader2 className="h-3 w-3 animate-spin" />
+                              ) : (
+                                <X className="h-3 w-3" />
+                              )}
+                            </button>
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 ) : (
                   <p className="text-sm text-muted-foreground text-center py-2">

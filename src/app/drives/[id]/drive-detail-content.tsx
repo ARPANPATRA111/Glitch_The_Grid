@@ -33,13 +33,15 @@ interface DriveDetailContentProps {
   eligibility: EligibilityCheckResult;
   hasApplied: boolean;
   hasResume: boolean;
+  wasWithdrawn?: boolean;
 }
 
 export function DriveDetailContent({ 
   drive, 
   eligibility, 
   hasApplied,
-  hasResume 
+  hasResume,
+  wasWithdrawn = false 
 }: DriveDetailContentProps) {
   const [isApplying, setIsApplying] = useState(false);
   const [isWithdrawing, setIsWithdrawing] = useState(false);
@@ -121,9 +123,9 @@ export function DriveDetailContent({
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-white border-b sticky top-0 z-50">
+      <header className="bg-background border-b sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center gap-4">
           <Link href="/drives">
             <Button variant="ghost" size="icon">
@@ -143,7 +145,7 @@ export function DriveDetailContent({
           <Card className="mb-6">
             <CardContent className="pt-6">
               <div className="flex flex-col md:flex-row gap-6">
-                <div className="h-20 w-20 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <div className="h-20 w-20 bg-muted rounded-xl flex items-center justify-center flex-shrink-0">
                   {drive.companyLogo ? (
                     <img 
                       src={drive.companyLogo} 
@@ -151,7 +153,7 @@ export function DriveDetailContent({
                       className="h-14 w-14 object-contain"
                     />
                   ) : (
-                    <Building2 className="h-10 w-10 text-gray-400" />
+                    <Building2 className="h-10 w-10 text-muted-foreground" />
                   )}
                 </div>
 
@@ -272,7 +274,7 @@ export function DriveDetailContent({
                           href={doc.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-3 p-3 border rounded-lg hover:bg-gray-50 transition-colors"
+                          className="flex items-center gap-3 p-3 border rounded-lg hover:bg-muted/50 transition-colors"
                         >
                           <FileText className="h-5 w-5 text-primary" />
                           <span>{doc.name}</span>
@@ -374,6 +376,24 @@ export function DriveDetailContent({
                           <Loader2 className="h-4 w-4 mr-2 animate-spin" />
                         ) : null}
                         Withdraw Application
+                      </Button>
+                    </div>
+                  ) : wasWithdrawn ? (
+                    <div className="space-y-3">
+                      <div className="p-4 rounded-lg bg-yellow-50 border border-yellow-200">
+                        <div className="flex items-start gap-3">
+                          <AlertTriangle className="h-5 w-5 text-yellow-600 mt-0.5" />
+                          <div>
+                            <h4 className="font-medium text-yellow-800">Application Withdrawn</h4>
+                            <p className="text-sm text-yellow-700 mt-1">
+                              You have previously withdrawn your application for this drive. Re-application is not allowed.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <Button disabled className="w-full" variant="secondary">
+                        <XCircle className="h-4 w-4 mr-2" />
+                        Cannot Re-apply
                       </Button>
                     </div>
                   ) : (

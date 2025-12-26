@@ -49,20 +49,20 @@ interface DrivesManagementProps {
 }
 
 const statusColors: Record<DriveStatus, string> = {
-  draft: 'bg-gray-100 text-gray-800',
-  upcoming: 'bg-blue-100 text-blue-800',
-  open: 'bg-green-100 text-green-800',
-  closed: 'bg-yellow-100 text-yellow-800',
-  'in-progress': 'bg-purple-100 text-purple-800',
-  completed: 'bg-emerald-100 text-emerald-800',
-  cancelled: 'bg-red-100 text-red-800',
+  draft: 'bg-muted text-muted-foreground',
+  upcoming: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400',
+  open: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400',
+  closed: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400',
+  'in-progress': 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400',
+  completed: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400',
+  cancelled: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400',
 };
 
 const tierColors: Record<string, string> = {
-  regular: 'bg-gray-100 text-gray-800',
-  dream: 'bg-blue-100 text-blue-800',
-  superDream: 'bg-purple-100 text-purple-800',
-  super_dream: 'bg-purple-100 text-purple-800',
+  regular: 'bg-muted text-muted-foreground',
+  dream: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400',
+  superDream: 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400',
+  super_dream: 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400',
 };
 
 export function DrivesManagement({ drives: initialDrives }: DrivesManagementProps) {
@@ -134,7 +134,7 @@ export function DrivesManagement({ drives: initialDrives }: DrivesManagementProp
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-4">

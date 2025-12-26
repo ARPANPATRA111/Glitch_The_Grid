@@ -1,7 +1,7 @@
 import { initializeApp, getApps, FirebaseApp } from 'firebase/app';
 import { getAuth, Auth } from 'firebase/auth';
 import { getFirestore, Firestore } from 'firebase/firestore';
-import { getStorage, FirebaseStorage } from 'firebase/storage';
+// Note: Firebase Storage removed - using Vercel Blob Storage instead
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY ?? '',
@@ -16,7 +16,6 @@ const firebaseConfig = {
 let firebaseApp: FirebaseApp;
 let auth: Auth;
 let db: Firestore;
-let storage: FirebaseStorage;
 
 if (getApps().length === 0) {
   firebaseApp = initializeApp(firebaseConfig);
@@ -26,6 +25,5 @@ if (getApps().length === 0) {
 
 auth = getAuth(firebaseApp);
 db = getFirestore(firebaseApp);
-storage = getStorage(firebaseApp);
 
-export { firebaseApp, auth, db, storage };
+export { firebaseApp, auth, db };

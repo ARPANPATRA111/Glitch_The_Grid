@@ -1,6 +1,6 @@
 import { redirect, notFound } from 'next/navigation';
 import { getSession, getUserProfile } from '@/actions/auth';
-import { getDriveById } from '@/actions/placement';
+import { getDriveById, getApplicationStatus } from '@/actions/placement';
 import { checkEligibility } from '@/lib/iips/eligibility-engine';
 import { DriveDetailContent } from './drive-detail-content';
 
@@ -26,9 +26,10 @@ export default async function DriveDetailPage({
     redirect('/login');
   }
 
-  const [profile, drive] = await Promise.all([
+  const [profile, drive, applicationStatus] = await Promise.all([
     getUserProfile(),
     getDriveById(id),
+    getApplicationStatus(id),
   ]);
 
   if (!profile) {
@@ -40,7 +41,10 @@ export default async function DriveDetailPage({
   }
 
   const eligibility = checkEligibility(profile, drive);
-  const hasApplied = profile.appliedDrives?.includes(drive.id) ?? false;
+  
+  // Check if actually applied (not withdrawn)
+  const hasApplied = applicationStatus.hasApplied && !applicationStatus.isWithdrawn;
+  const wasWithdrawn = applicationStatus.isWithdrawn ?? false;
 
   return (
     <DriveDetailContent 
@@ -48,6 +52,7 @@ export default async function DriveDetailPage({
       eligibility={eligibility}
       hasApplied={hasApplied}
       hasResume={!!profile.resumeUrl}
+      wasWithdrawn={wasWithdrawn}
     />
   );
 }

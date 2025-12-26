@@ -1,6 +1,6 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, unstable_cache } from 'next/cache';
 import { getAdminFirestore } from '@/lib/firebase/admin';
 import { getSession } from './auth';
 import { 
@@ -63,6 +63,37 @@ class PlacementError extends Error {
 
 function generateApplicationId(driveId: string, studentId: string): string {
   return `${driveId}_${studentId}`;
+}
+
+export async function getApplicationStatus(driveId: string): Promise<{ 
+  hasApplied: boolean; 
+  status?: ApplicationStatus;
+  isWithdrawn?: boolean;
+}> {
+  try {
+    const session = await getSession();
+    if (!session) {
+      return { hasApplied: false };
+    }
+
+    const db = getAdminFirestore();
+    const applicationId = generateApplicationId(driveId, session.uid);
+    const applicationSnap = await db.collection('applications').doc(applicationId).get();
+
+    if (!applicationSnap.exists) {
+      return { hasApplied: false };
+    }
+
+    const application = applicationSnap.data() as Application;
+    return { 
+      hasApplied: true, 
+      status: application.status,
+      isWithdrawn: application.status === 'withdrawn'
+    };
+  } catch (error) {
+    console.error('Error getting application status:', error);
+    return { hasApplied: false };
+  }
 }
 
 export async function applyToDrive(driveId: string): Promise<PlacementActionResult> {
@@ -539,8 +570,9 @@ export async function debarStudent(
   }
 }
 
-export async function getOpenDrives(): Promise<PlacementDrive[]> {
-  try {
+// Cached version of fetching open drives (revalidates every 60 seconds)
+const getCachedOpenDrives = unstable_cache(
+  async () => {
     const db = getAdminFirestore();
     
     const snapshot = await db
@@ -561,6 +593,14 @@ export async function getOpenDrives(): Promise<PlacementDrive[]> {
       const dateB = new Date(b.applicationDeadline ?? Date.now());
       return dateA.getTime() - dateB.getTime();
     });
+  },
+  ['open-drives'],
+  { revalidate: 60, tags: ['drives'] } // Cache for 60 seconds
+);
+
+export async function getOpenDrives(): Promise<PlacementDrive[]> {
+  try {
+    return await getCachedOpenDrives();
   } catch (error) {
     console.error('Error fetching open drives:', error);
     return [];
@@ -608,4 +648,101 @@ export async function getDriveById(driveId: string): Promise<PlacementDrive | nu
     ...doc.data(),
     id: doc.id,
   }) as PlacementDrive;
+}
+
+// ============================================================================
+// SKILL-BASED DRIVE RECOMMENDATIONS
+// ============================================================================
+
+interface DriveWithMatch extends PlacementDrive {
+  matchScore: number;
+  matchedSkills: string[];
+}
+
+/**
+ * Calculate skill match percentage between student and drive
+ */
+function calculateSkillMatch(
+  studentSkills: string[],
+  driveRequirements: string[] | undefined
+): { score: number; matched: string[] } {
+  if (!driveRequirements || driveRequirements.length === 0 || studentSkills.length === 0) {
+    return { score: 0, matched: [] };
+  }
+
+  const normalizedStudentSkills = studentSkills.map(s => s.toLowerCase().trim());
+  const normalizedRequirements = driveRequirements.map(s => s.toLowerCase().trim());
+  
+  const matched: string[] = [];
+  
+  for (const req of normalizedRequirements) {
+    // Check for exact match
+    if (normalizedStudentSkills.includes(req)) {
+      matched.push(req);
+      continue;
+    }
+    
+    // Check for partial match (e.g., "react" matches "react.js")
+    const partialMatch = normalizedStudentSkills.find(skill => 
+      skill.includes(req) || req.includes(skill)
+    );
+    if (partialMatch) {
+      matched.push(req);
+    }
+  }
+  
+  const score = Math.round((matched.length / normalizedRequirements.length) * 100);
+  
+  return { score, matched };
+}
+
+/**
+ * Get recommended drives based on student's skills
+ */
+export async function getRecommendedDrives(limit = 10): Promise<DriveWithMatch[]> {
+  try {
+    const session = await getSession();
+    if (!session) return [];
+
+    const db = getAdminFirestore();
+    
+    // Get student's skills
+    const studentDoc = await db.collection('users').doc(session.uid).get();
+    const studentData = studentDoc.data();
+    const studentSkills: string[] = studentData?.extractedSkills || [];
+    
+    if (studentSkills.length === 0) {
+      console.log('[Recommendations] Student has no skills, returning empty');
+      return [];
+    }
+    
+    // Get open drives
+    const openDrives = await getOpenDrives();
+    
+    // Calculate match scores
+    const drivesWithScores: DriveWithMatch[] = openDrives.map(drive => {
+      // Use requiredSkills if available, otherwise fall back to job description keywords
+      const driveSkills = drive.requiredSkills || [];
+      const { score, matched } = calculateSkillMatch(studentSkills, driveSkills);
+      
+      return {
+        ...drive,
+        matchScore: score,
+        matchedSkills: matched,
+      };
+    });
+    
+    // Filter out drives with 0% match and sort by score
+    const recommendedDrives = drivesWithScores
+      .filter(d => d.matchScore > 0)
+      .sort((a, b) => b.matchScore - a.matchScore)
+      .slice(0, limit);
+    
+    console.log('[Recommendations] Found', recommendedDrives.length, 'matching drives');
+    
+    return recommendedDrives;
+  } catch (error) {
+    console.error('Error getting recommended drives:', error);
+    return [];
+  }
 }

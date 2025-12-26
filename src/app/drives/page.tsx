@@ -47,12 +47,10 @@ export default async function DrivesPage() {
   }));
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
+    <div className="min-h-screen bg-background">
       <MainNavbar userName={profile.fullName} programName={profile.programName} />
 
       <main className="container mx-auto px-4 py-8">
-        {/* Page Header */}
         <div className="mb-8">
           <h2 className="text-2xl font-bold mb-2">Placement Drives</h2>
           <p className="text-muted-foreground">
@@ -60,7 +58,6 @@ export default async function DrivesPage() {
           </p>
         </div>
 
-        {/* Filters */}
         <div className="flex flex-col md:flex-row gap-4 mb-8">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -83,7 +80,6 @@ export default async function DrivesPage() {
           </div>
         </div>
 
-        {/* Drives Grid */}
         {drives.length === 0 ? (
           <Card className="text-center py-12">
             <CardContent>
@@ -98,7 +94,6 @@ export default async function DrivesPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {drivesWithEligibility.map(({ drive, eligibility }) => (
               <Card key={drive.id} className={`relative ${!eligibility.eligible ? 'opacity-75' : ''}`}>
-                {/* Tier Badge */}
                 <div className="absolute top-4 right-4">
                   <Badge variant={drive.tier === 'superDream' ? 'superDream' : drive.tier}>
                     {formatTierName(drive.tier)}
@@ -107,7 +102,7 @@ export default async function DrivesPage() {
 
                 <CardHeader>
                   <div className="flex items-start gap-4">
-                    <div className="h-12 w-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                    <div className="h-12 w-12 bg-muted rounded-lg flex items-center justify-center">
                       {drive.companyLogo ? (
                         <img 
                           src={drive.companyLogo} 
@@ -115,7 +110,7 @@ export default async function DrivesPage() {
                           className="h-8 w-8 object-contain"
                         />
                       ) : (
-                        <Briefcase className="h-6 w-6 text-gray-400" />
+                        <Briefcase className="h-6 w-6 text-muted-foreground" />
                       )}
                     </div>
                     <div className="flex-1 min-w-0">
@@ -130,7 +125,6 @@ export default async function DrivesPage() {
                 </CardHeader>
 
                 <CardContent className="space-y-4">
-                  {/* Details */}
                   <div className="grid grid-cols-2 gap-3 text-sm">
                     <div className="flex items-center gap-2 text-muted-foreground">
                       <IndianRupee className="h-4 w-4" />
@@ -150,7 +144,6 @@ export default async function DrivesPage() {
                     </div>
                   </div>
 
-                  {/* Eligibility Status */}
                   <div className={`p-3 rounded-lg text-sm ${
                     eligibility.eligible 
                       ? 'bg-green-50 text-green-800' 
@@ -167,7 +160,6 @@ export default async function DrivesPage() {
                     )}
                   </div>
 
-                  {/* Requirements */}
                   <div className="text-xs text-muted-foreground space-y-1">
                     <p>Min CGPA: {drive.eligibility?.minCGPA ?? 'N/A'}</p>
                     <p>Programs: {drive.eligibility?.allowedPrograms?.slice(0, 3).join(', ') || 'All'}</p>

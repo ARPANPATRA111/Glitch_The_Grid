@@ -6,6 +6,10 @@ node_modules
 
 # Testing
 /coverage
+src/__tests__/
+
+# Seed scripts (dev only)
+scripts/
 
 # Next.js
 /.next/
@@ -57,6 +61,14 @@ ui-debug.log
 *-firebase-adminsdk-*.json
 service-account*.json
 firebase-service-account.json
+
+# Unwanted files
+jest.config.js
+jest.setup.ts
+CONTRIBUTING.md
+jest.setup.js
+TESTING_ROADMAP.md
 H.md
 W.md
 D.md
+I.md

@@ -21,14 +21,14 @@ import { useToast } from '@/components/ui/use-toast';
 import { createDrive } from '@/actions/admin';
 import type { PlacementTier, DriveStatus } from '@/types/schema';
 
+// Program codes must match PROGRAM_PREFIX_MAP in roll-parser.ts
 const PROGRAMS = [
   { code: 'MCA_INT', name: 'MCA (Integrated)' },
-  { code: 'MCA', name: 'MCA' },
-  { code: 'MBA', name: 'MBA' },
-  { code: 'BTECH_CS', name: 'B.Tech (CS)' },
-  { code: 'BTECH_IT', name: 'B.Tech (IT)' },
-  { code: 'BCA', name: 'BCA' },
-  { code: 'BBA', name: 'BBA' },
+  { code: 'MBA_MS', name: 'MBA (Management Science)' },
+  { code: 'MTECH_IT', name: 'M.Tech (IT)' },
+  { code: 'MBA_APR', name: 'MBA (Advertising & PR)' },
+  { code: 'MBA_ENT', name: 'MBA (Entrepreneurship)' },
+  { code: 'BCOM_HONS', name: 'B.Com (Hons)' },
 ];
 
 const INDUSTRIES = [
@@ -131,7 +131,7 @@ export function CreateDriveForm() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <div className="flex items-center gap-4 mb-8">
           <Link href="/admin/drives">

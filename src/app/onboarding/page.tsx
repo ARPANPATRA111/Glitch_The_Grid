@@ -13,7 +13,6 @@ type Step = 'personal' | 'academic' | 'address';
 
 interface FormData {
   rollNumber: string;
-  fullName: string;
   phone: string;
   gender: 'male' | 'female' | 'other' | 'prefer-not-to-say';
   dateOfBirth: string;
@@ -39,7 +38,6 @@ export default function OnboardingPage() {
 
   const [formData, setFormData] = useState<FormData>({
     rollNumber: '',
-    fullName: '',
     phone: '',
     gender: 'prefer-not-to-say',
     dateOfBirth: '',
@@ -68,7 +66,6 @@ export default function OnboardingPage() {
     try {
       const result = await completeProfile({
         rollNumber: formData.rollNumber,
-        fullName: formData.fullName,
         phone: formData.phone,
         gender: formData.gender,
         dateOfBirth: formData.dateOfBirth,
@@ -112,9 +109,8 @@ export default function OnboardingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white p-4 py-8">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-slate-900 dark:to-slate-800 p-4 py-8">
       <div className="mx-auto max-w-2xl">
-        {/* Header */}
         <div className="mb-8 text-center">
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
             <GraduationCap className="h-8 w-8 text-primary" />
@@ -125,7 +121,6 @@ export default function OnboardingPage() {
           </p>
         </div>
 
-        {/* Progress Steps */}
         <div className="mb-8 flex justify-center gap-2">
           {(['personal', 'academic', 'address'] as const).map((s, i) => (
             <div
@@ -146,7 +141,6 @@ export default function OnboardingPage() {
           ))}
         </div>
 
-        {/* Form Card */}
         <Card>
           <CardHeader>
             <CardTitle>
@@ -161,7 +155,6 @@ export default function OnboardingPage() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            {/* Personal Info Step */}
             {step === 'personal' && (
               <>
                 <div className="space-y-2">
@@ -175,16 +168,6 @@ export default function OnboardingPage() {
                   <p className="text-xs text-muted-foreground">
                     Format: IC-2K22-45, IM-2K23-12, IT-2K21-08
                   </p>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="fullName">Full Name *</Label>
-                  <Input
-                    id="fullName"
-                    placeholder="Enter your full name"
-                    value={formData.fullName}
-                    onChange={(e) => updateField('fullName', e.target.value)}
-                  />
                 </div>
 
                 <div className="space-y-2">
@@ -232,7 +215,6 @@ export default function OnboardingPage() {
               </>
             )}
 
-            {/* Academic Info Step */}
             {step === 'academic' && (
               <>
                 <div className="grid gap-4 sm:grid-cols-2">
@@ -358,7 +340,6 @@ export default function OnboardingPage() {
               </>
             )}
 
-            {/* Address Step */}
             {step === 'address' && (
               <>
                 <div className="space-y-2">

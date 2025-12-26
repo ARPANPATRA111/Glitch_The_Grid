@@ -78,7 +78,7 @@ export function AnalyticsDashboard({ analytics }: AnalyticsDashboardProps) {
     : 0;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
         <div className="flex items-center gap-4 mb-8">
           <Link href="/admin">
@@ -230,12 +230,12 @@ export function AnalyticsDashboard({ analytics }: AnalyticsDashboardProps) {
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 {programStats.map((stat) => (
-                  <div key={stat.code} className="p-4 bg-gray-50 rounded-lg">
+                  <div key={stat.code} className="p-4 bg-muted/50 rounded-lg">
                     <p className="font-medium">{stat.program}</p>
                     <p className="text-sm text-muted-foreground">{stat.code}</p>
                     <div className="mt-2 flex items-center justify-between">
                       <span className="text-lg font-bold">{stat.placed}/{stat.total}</span>
-                      <span className="text-sm text-green-600 font-medium">{stat.rate}</span>
+                      <span className="text-sm text-green-600 dark:text-green-400 font-medium">{stat.rate}</span>
                     </div>
                   </div>
                 ))}

@@ -26,7 +26,6 @@ export interface CreateSessionInput {
 
 export interface CompleteProfileInput {
   rollNumber: string;
-  fullName: string;
   phone: string;
   gender: 'male' | 'female' | 'other' | 'prefer-not-to-say';
   dateOfBirth: string;
@@ -182,6 +181,29 @@ export async function completeProfile(input: CompleteProfileInput): Promise<Auth
 
     const rollData = rollResult.data;
 
+    // Check if roll number is already registered by another user
+    const db = getAdminFirestore();
+    const existingUserQuery = await db.collection('users')
+      .where('rollNumber', '==', rollData.rollNumber)
+      .limit(1)
+      .get();
+
+    if (!existingUserQuery.empty) {
+      const existingUser = existingUserQuery.docs[0];
+      // Make sure it's not the same user re-completing their profile
+      if (existingUser.id !== session.uid) {
+        return {
+          success: false,
+          error: `Roll number ${rollData.rollNumber} is already registered. Each student can only have one account.`,
+        };
+      }
+    }
+
+    // Get the user's display name from Firebase Auth (set during signup)
+    const auth = getAdminAuth();
+    const firebaseUser = await auth.getUser(session.uid);
+    const fullName = firebaseUser.displayName || session.email?.split('@')[0] || 'Student';
+
     const placementStatus: PlacementStatus = {
       isPlaced: false,
       currentTier: null,
@@ -195,7 +217,7 @@ export async function completeProfile(input: CompleteProfileInput): Promise<Auth
       uid: session.uid,
       email: session.email,
       emailVerified: session.emailVerified,
-      fullName: input.fullName,
+      fullName: fullName,
       rollNumber: rollData.rollNumber,
       gender: input.gender,
       dateOfBirth: new Date(input.dateOfBirth),
@@ -228,10 +250,8 @@ export async function completeProfile(input: CompleteProfileInput): Promise<Auth
       lastLoginAt: new Date(),
     };
 
-    const db = getAdminFirestore();
     await db.collection('users').doc(session.uid).set(userProfile);
 
-    const auth = getAdminAuth();
     await auth.setCustomUserClaims(session.uid, {
       role: 'student',
       programCode: rollData.programCode,

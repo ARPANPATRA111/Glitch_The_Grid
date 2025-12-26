@@ -42,7 +42,7 @@ export function DashboardContent({ profile, drives, applications, isAdmin }: Das
   const upcomingDrives = drives.filter(d => d.status === 'open').slice(0, 5);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       {/* Header */}
       <MainNavbar 
         userName={profile.fullName}
@@ -201,7 +201,7 @@ export function DashboardContent({ profile, drives, applications, isAdmin }: Das
                   {upcomingDrives.map((drive) => (
                     <div 
                       key={drive.id} 
-                      className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50 transition-colors"
+                      className="flex items-center justify-between p-4 border rounded-lg hover:bg-muted/50 transition-colors"
                     >
                       <div>
                         <div className="flex items-center gap-2 mb-1">

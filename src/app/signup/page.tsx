@@ -109,7 +109,7 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 to-white p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 to-white dark:from-slate-900 dark:to-slate-800 p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
@@ -183,9 +183,9 @@ export default function SignupPage() {
                   {passwordRequirements.map((req, index) => (
                     <div key={index} className="flex items-center gap-2 text-xs">
                       <CheckCircle2 
-                        className={`h-3 w-3 ${req.check ? 'text-green-500' : 'text-gray-300'}`} 
+                        className={`h-3 w-3 ${req.check ? 'text-green-500' : 'text-gray-300 dark:text-gray-600'}`} 
                       />
-                      <span className={req.check ? 'text-green-600' : 'text-muted-foreground'}>
+                      <span className={req.check ? 'text-green-600 dark:text-green-400' : 'text-muted-foreground'}>
                         {req.label}
                       </span>
                     </div>
