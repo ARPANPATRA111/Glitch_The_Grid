@@ -1,13 +1,9 @@
 import { NextResponse } from 'next/server';
 import { setCSRFToken } from '@/lib/csrf';
 
-/**
- * API route to set CSRF token
- * GET /api/csrf - Sets a new CSRF token cookie and returns it
- */
 export async function GET() {
   try {
-    const token = await setCSRFToken();
+    await setCSRFToken();
     
     return NextResponse.json(
       { success: true },

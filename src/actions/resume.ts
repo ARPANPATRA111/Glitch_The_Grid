@@ -527,7 +527,7 @@ async function analyzeDocumentForSkills(resumeUrl: string): Promise<string[]> {
       
       if (cleaned.length > 30) {
         const parts = cleaned.split(/[,;|]/);
-        cleaned = parts[0].trim();
+        cleaned = parts[0]?.trim() ?? cleaned;
       }
       
       if (cleaned.length > 40 || cleaned.length < 1) {

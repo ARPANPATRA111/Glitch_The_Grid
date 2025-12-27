@@ -20,7 +20,7 @@ const CSRFContext = createContext<CSRFContextValue | null>(null);
 function getTokenFromCookie(): string | null {
   if (typeof document === 'undefined') return null;
   const match = document.cookie.match(new RegExp(`${CSRF_COOKIE_NAME}=([^;]+)`));
-  return match ? decodeURIComponent(match[1]) : null;
+  return match?.[1] ? decodeURIComponent(match[1]) : null;
 }
 
 export function CSRFProvider({ children }: { children: React.ReactNode }) {

@@ -542,8 +542,7 @@ export function ProfileContent({ profile, applications }: ProfileContentProps) {
                   <div className="space-y-4">
                     <CategorizedSkills 
                       skills={skills} 
-                      showUncategorized={true}
-                      compact={true}
+                      collapsible={false}
                     />
                     
                     <div className="border-t pt-4">

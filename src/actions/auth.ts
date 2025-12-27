@@ -188,9 +188,8 @@ export async function completeProfile(input: CompleteProfileInput): Promise<Auth
       .limit(1)
       .get();
 
-    if (!existingUserQuery.empty) {
+    if (!existingUserQuery.empty && existingUserQuery.docs[0]) {
       const existingUser = existingUserQuery.docs[0];
-      // Make sure it's not the same user re-completing their profile
       if (existingUser.id !== session.uid) {
         return {
           success: false,

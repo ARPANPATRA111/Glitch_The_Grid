@@ -169,6 +169,7 @@ export interface PlacementDrive {
   stipendPerMonth?: number;
   
   eligibility: DriveEligibility;
+  requiredSkills?: string[];
   
   rounds: DriveRound[];
   

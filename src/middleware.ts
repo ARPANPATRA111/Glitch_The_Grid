@@ -81,9 +81,10 @@ export async function middleware(request: NextRequest) {
   }
 
   // Helper to log and return response
-  const respond = (response: NextResponse, statusCode: number = 200) => {
+  const respond = (response: NextResponse, statusCode: number = 200, userId: string | null = null) => {
     if (ENABLE_REQUEST_LOGGING) {
-      logRequest(request.method, pathname, statusCode, startTime, requestId);
+      const duration = Date.now() - startTime;
+      logRequest(requestId, request.method, pathname, userId, duration, statusCode);
     }
     response.headers.set('x-request-id', requestId);
     return response;
